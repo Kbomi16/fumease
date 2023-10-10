@@ -1,0 +1,77 @@
+/* styles.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000; /* 헤더의 배경색을 설정할 수 있습니다. */
+  color: white; /* 헤더 텍스트 색상 설정 */
+  padding: 10px; /* 원하는 여백 설정 */
+}
+.header img{
+  padding-left: 5%;
+  /* padding-right: 16%; */
+  /* width: 83px; */
+  /* padding: 0%; */
+  height: 37.2px;
+}
+/* styles.css */
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: auto; /* 가운데 정렬 */
+
+  }
+  
+  nav li {
+    padding: 7px;
+    padding-right: 3%;
+    padding-left: 6.5%;
+    font-size: 15px;}
+  
+nav a{
+    text-decoration: none;
+    color: white;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000; /* 푸터의 배경색을 설정할 수 있습니다. */
+  color: white; /* 푸터 텍스트 색상 설정 */
+  padding: 10px; /* 원하는 여백 설정 */
+}
+.col-md-4{
+  justify-content: auto; /* 가운데 정렬 */
+
+}
+.footerlogo{
+  margin-left: 40.5%;
+    /* margin-right: auto; */
+    width: 220px;
+    /* margin: 0px auto; */
+    padding: 0px;
+    /* margin-right: 4px; */
+}
+.text{
+  margin-left: 40.5%;
+
+}
+.word-container {
+  display: flex;
+  gap: 8%;
+  margin: 5%;
+}
+.ftext {
+  padding-left: 26%;}
+
+  .ft1{
+    padding-left: 3%;
+  }
+  .ft2{
+    padding-left: 15%;
+  }
