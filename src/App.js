@@ -10,15 +10,15 @@ import Home from './views/Home'
 function App() {
   return (
     <div className="App">
-      
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter> 
 
-      <Header/>
-      <Footer/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+
+      <Header />
+      <Footer />
     </div>
   );
 }
