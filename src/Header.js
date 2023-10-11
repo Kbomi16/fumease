@@ -8,7 +8,7 @@ function Header() {
         <header className="header">
             <nav>
                 <ul>
-                    <Link to="/main"><img className="logo" src="pumease-logo.png" alt="헤더 이미지" /></Link>
+                    <Link to="/main"><img className="logo" src="fumease-logo.png" alt="헤더 이미지" /></Link>
 
                     <li className="home"><Link to="/home">HOME</Link></li>
                     <li className="scent"><Link to="/scent">THE SCENT</Link></li>
@@ -16,7 +16,7 @@ function Header() {
                     <li className="buy"><Link to="/buy">BUY NOW</Link></li>
                     <li className="my"><Link to="/my">MY</Link></li>
                     <li className="login"><Link to="/login">LOGIN</Link></li>
-                    <li className="icon"><Link to="/icon">icon</Link></li>
+                    <Link to="/shop"><img className="shoppingbag" src="shoppingbag.png" alt="쇼핑백" /></Link>
 
                 </ul>
             </nav>

@@ -9,12 +9,9 @@
   color: white; /* 헤더 텍스트 색상 설정 */
   padding: 10px; /* 원하는 여백 설정 */
 }
-.header img{
-  padding-left: 5%;
-  /* padding-right: 16%; */
-  /* width: 83px; */
-  /* padding: 0%; */
-  height: 37.2px;
+.logo{
+  padding: 0% 0% 0% 5%;
+  height: 40.2px;
 }
 /* styles.css */
 
@@ -27,7 +24,7 @@ nav ul {
   }
   
   nav li {
-    padding: 7px;
+    padding: 10px;
     padding-right: 3%;
     padding-left: 6.5%;
     font-size: 15px;}
@@ -50,9 +47,9 @@ nav a{
 
 }
 .footerlogo{
-  margin-left: 40.5%;
-    /* margin-right: auto; */
-    width: 220px;
+  margin-left: 38.5%;
+margin-top: 1.5%;
+    width: 280px;
     /* margin: 0px auto; */
     padding: 0px;
     /* margin-right: 4px; */
@@ -74,4 +71,18 @@ nav a{
   }
   .ft2{
     padding-left: 15%;
+  }
+.scent , .about ,  .buy{
+  padding-left: 0%;
+}
+  .shoppingbag{
+    width: 45%;
+    padding: 3% 0% 0% 0%;
+  }
+  .my{
+    padding-left: 40%;
+    padding-right: 0%;
+  }
+  .login{
+    padding-left: 2%;
   }
