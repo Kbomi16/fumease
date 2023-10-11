@@ -8,3 +8,12 @@
 - React
 
 https://react-bootstrap.netlify.app/docs/components/accordion
+
+### 보미
+- 메인페이지, 로그인, 회원가입 UI 작업
+
+### 다영
+
+
+### 혜현
+
