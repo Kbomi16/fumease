@@ -1,7 +1,9 @@
 /* styles.css */
 
 .header {
-  position: fixed;
+  font-family: 'AppleSDGothicNeoB';
+height: 90px;
+  position: absolute ;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,14 +19,14 @@
 
 nav ul {
     list-style: none;
-    padding: 0;
+    padding: 8px;
     display: flex;
     justify-content: auto; /* 가운데 정렬 */
 
   }
   
   nav li {
-    padding: 10px;
+    padding: 8px;
     padding-right: 3%;
     padding-left: 6.5%;
     font-size: 15px;}
@@ -33,10 +35,18 @@ nav a{
     text-decoration: none;
     color: white;
 }
+
+
+
 .footer {
-  position: fixed;
+  font-family: 'AppleSDGothicNeB';
+
+  /* position: absolute !important; */
+  position : absolute;
+  transform : translateY(300%);
+  height: 412px;
   bottom: 0;
-  left: 0;
+  left: 0px;
   width: 100%;
   background-color: #000; /* 푸터의 배경색을 설정할 수 있습니다. */
   color: white; /* 푸터 텍스트 색상 설정 */
@@ -77,12 +87,13 @@ margin-top: 1.5%;
 }
   .shoppingbag{
     width: 45%;
-    padding: 3% 0% 0% 0%;
+    padding: 5% 0% 0% 0%;
   }
   .my{
-    padding-left: 40%;
+    padding-left: 38%;
     padding-right: 0%;
   }
-  .login{
+  .logins{
+    margin: 0%;
     padding-left: 2%;
   }

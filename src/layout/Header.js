@@ -1,4 +1,5 @@
 // Header.js
+import './styles.css';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,7 @@ function Header() {
                     <li className="about"><Link to="/about">ABOUT</Link></li>
                     <li className="buy"><Link to="/buy">BUY NOW</Link></li>
                     <li className="my"><Link to="/my">MY</Link></li>
-                    <li className="login"><Link to="/login">LOGIN</Link></li>
+                    <li className="logins"><Link to="/login">LOGIN</Link></li>
                     <Link to="/shop"><img className="shoppingbag" src="shoppingbag.png" alt="쇼핑백" /></Link>
 
                 </ul>

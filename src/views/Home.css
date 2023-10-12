@@ -1,7 +1,9 @@
 .main-page {
     display: flex;
+    position:realtive ;
+padding-top: 90px;
   }
-  
+
   .left-section,
   .right-section {
     width: 50%;
@@ -9,7 +11,7 @@
     overflow: hidden;
   }
   
-  img {
+  .mainimg {
     width: 100%;
     height: 100%;
     object-fit: cover;

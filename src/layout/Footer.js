@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './styles.css';
 function Footer() {
     const words = ['회사소개', '공지사항', '연락처', '광고문의', '채용', '| 버그제보 |', '개인정보 처리방침', '서비스 이용약관'];
 
