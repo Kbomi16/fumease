@@ -1,0 +1,30 @@
+h2 {
+  font-family: 'AppleSDGothicNeoB';
+}
+.login {
+  margin: 20rem;
+}
+p, .label {
+  font-family: 'AppleSDGothicNeoL';
+}
+.input {
+  font-family: 'AppleSDGothicNeoL';
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+.btn {
+  background-color: #000;
+  border-radius: 0;
+  width: 100%;
+  margin-top: 1rem;
+  font-family: 'AppleSDGothicNeoB';
+}
+.btn:hover, .btn:focus {
+  cursor: pointer;
+  background-color: #000 !important;
+  color: #fff;
+}
+
+.container {
+  padding: 10rem;
+}
