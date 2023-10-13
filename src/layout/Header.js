@@ -9,9 +9,9 @@ function Header() {
         <header className="header">
             <nav>
                 <ul>
-                    <Link to="/main"><img className="logo" src="fumease-logo.png" alt="헤더 이미지" /></Link>
+                    <Link to="/"><img className="logo" src="fumease-logo.png" alt="헤더 이미지" /></Link>
 
-                    <li className="home"><Link to="/home">HOME</Link></li>
+                    <li className="home"><Link to="/">HOME</Link></li>
                     <li className="scent"><Link to="/scent">THE SCENT</Link></li>
                     <li className="about"><Link to="/about">ABOUT</Link></li>
                     <li className="buy"><Link to="/buy">BUY NOW</Link></li>

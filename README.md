@@ -10,7 +10,10 @@
 https://react-bootstrap.netlify.app/docs/components/accordion
 
 ### 보미
-- 메인페이지, 로그인, 회원가입 UI 작업
+- 로그인, 회원가입 UI 작업
+- 메인페이지 UI 작업
+- 헤더, 푸터, 모든 페이지에 적용되게 함.
+- 모든 페이지 UI 조금씩 제작함.
 
 ### 다영
 

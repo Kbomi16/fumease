@@ -1,14 +1,13 @@
-.main-page {
-    display: flex;
-    position:realtive ;
-padding-top: 90px;
+.main {
+  display: flex;
+  flex-direction: row;
+  padding-top: 90px;
   }
 
   .left-section,
   .right-section {
-    width: 50%;
+    width: 100%;
     height: 50rem;
-    overflow: hidden;
   }
   
   .mainimg {
@@ -16,3 +15,57 @@ padding-top: 90px;
     height: 100%;
     object-fit: cover;
   }
+.gotoScent {
+  font-family: 'AppleSDGothicNeoL';
+  background-color: #fff;
+  font-size: 15px;
+  border: none;
+  position: relative;
+  top: -7rem;
+  left: 55rem;
+  padding: 0.5rem 3rem;
+}
+/* 
+  {`
+    .main-page a {
+      color: black !important;
+    }
+  `}
+  {`
+    .main-page header {
+      background: none !important;
+    }
+  `}
+  {`
+    .shoppingbag, .logo {
+      filter: invert(100%);
+    }
+  `} */
+
+.ai {
+  font-family: 'AppleSDGothicNeoB';
+  text-align: center;
+  margin-top: 5rem;
+}
+.keyword-buttons {
+  font-family: 'AppleSDGothicNeoL';
+  padding: 3rem;
+}
+.keyword {
+  border-radius: 10rem;
+  padding: 0.5rem 1rem;
+  font-size: 18px;
+  border: 2px solid #000;
+  background-color: #fff;
+  margin: 0.5rem;
+}
+.aiBtn {
+  border-radius: 10rem;
+  width: 10rem;
+  font-size: 20px;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 0.8rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
