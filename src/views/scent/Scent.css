@@ -1,0 +1,42 @@
+.container {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0;
+}
+.text1 {
+  padding: 5rem 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-family: 'AppleSDGothicNeoB';
+}
+
+p {
+  font-family: 'AppleSDGothicNeoL';
+  text-align: center;
+}
+.row {
+  padding: 0 10rem;
+}
+
+.circle-container {
+  padding: 5rem 10rem;
+  display: flex;
+}
+
+.circle {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px; /* 각 원 사이의 간격 조절 */
+  font-size: 18px;
+  font-weight: bold;
+}

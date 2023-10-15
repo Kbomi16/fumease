@@ -10,11 +10,12 @@ import "../src/fonts/Fonts.css"
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import Home from './views/Home'
+import Header from './layout/Header';
+import Footer from './layout/Footer';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import MyPage from './views/Mypage';
-import Header from './layout/Header';
-import Footer from './layout/Footer';
+import Scent from './views/scent/Scent'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/my" element={<MyPage />} />
+          <Route path="/scent" element={<Scent />} />
         </Routes>
         <Footer/>
       </BrowserRouter>
