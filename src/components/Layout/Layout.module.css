@@ -1,8 +1,9 @@
 /* Header */
 .header {
   font-family: 'AppleSDGothicNeoB';
-  padding: 0.5rem;
+  padding: 1rem 0.5rem 0.3rem;
   position: fixed;
+  top: 0;
   width: 100%;
   background-color: transparent;
   color: white;

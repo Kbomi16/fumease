@@ -24,8 +24,6 @@ function App() {
     },
   };
 
-  const circles = Array.from({ length: 10 }, (_, index) => index + 1);
-
   return (
     <Container className={styles['container']}>
       <YouTube videoId={videoId} opts={opts} />
@@ -35,11 +33,47 @@ function App() {
       </div>
 
       <div className={styles['circle-container']}>
-        {circles.map((number) => (
-          <div key={number} className={styles.circle}>
-            {number}
+          <div className='brand1'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>조말론</p>
           </div>
-        ))}
+          <div className='brand2'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>탬버린즈</p>
+          </div>
+          <div className='brand3'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>논픽션</p>
+          </div>
+          <div className='brand4'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>이솝</p>
+          </div>
+          <div className='brand5'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>딥티크</p>
+          </div>
+          <div className='brand6'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>샤넬</p>
+          </div>
+          <div className='brand7'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>디올</p>
+          </div>
+          <div className='brand8'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>바이레도</p>
+          </div>
+          <div className='brand9'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>산타마리아노벨리</p>
+          </div>
+          <div className='brand10'>
+            <div className={styles.circle}></div>
+            <p className={styles.brand}>버버리</p>
+          </div>
+          
       </div>
 
       <Row className={styles['scents']}>

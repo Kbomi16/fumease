@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Layout.module.css';
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,8 +18,10 @@ function Header() {
     };
   }, []);
 
+  const isMainPage = location.pathname === '/'; // 메인 페이지 여부 확인
+
   return (
-    <header className={`${styles.header} ${scrollPosition > 0 ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isMainPage && scrollPosition === 0 ? '' : styles.scrolled}`}>
       <nav>
         <ul>
           <Link to="/">
