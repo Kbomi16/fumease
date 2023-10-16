@@ -8,10 +8,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../src/fonts/Fonts.css"
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import 'normalize.css';
+
 
 import Home from './views/Home'
-import Header from './layout/Header';
-import Footer from './layout/Footer';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import MyPage from './views/Mypage';

@@ -40,3 +40,26 @@ p {
   font-size: 18px;
   font-weight: bold;
 }
+
+.title {
+  font-family: 'AppleSDGothicNeoB';
+}
+.text {
+  text-align: left;
+}
+
+.btn {
+  background-color: #000;
+  border-radius: 0;
+  width: 100%;
+  margin-top: 1rem;
+  font-family: 'AppleSDGothicNeoB';
+}
+.btn:hover, .btn:focus {
+  cursor: pointer;
+  background-color: #000 !important;
+  color: #fff;
+}
+.scents {
+  padding: 5rem 10rem;
+}

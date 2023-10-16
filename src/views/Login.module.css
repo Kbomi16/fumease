@@ -26,5 +26,14 @@ p, .label {
 }
 
 .container {
-  padding: 10rem;
+  margin: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.justify-content-md-center {
+  width: 80rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

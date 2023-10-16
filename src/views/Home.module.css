@@ -1,7 +1,6 @@
 .main {
   display: flex;
   flex-direction: row;
-  padding-top: 90px;
   }
 
   .left-section,
@@ -15,16 +14,16 @@
     height: 100%;
     object-fit: cover;
   }
-.gotoScent {
-  font-family: 'AppleSDGothicNeoL';
-  background-color: #fff;
-  font-size: 15px;
-  border: none;
-  position: relative;
-  top: -7rem;
-  left: 55rem;
-  padding: 0.5rem 3rem;
-}
+  .gotoScent {
+    font-family: 'AppleSDGothicNeoL';
+    background-color: #fff;
+    font-size: 15px;
+    border: none;
+    padding: 0.5rem 3rem;
+    position: relative;
+    top: -8rem;
+    left: 54.5rem;
+  }
 /* 
   {`
     .main-page a {
@@ -45,7 +44,7 @@
 .ai {
   font-family: 'AppleSDGothicNeoB';
   text-align: center;
-  margin-top: 5rem;
+  margin: 5rem;
 }
 .keyword-buttons {
   font-family: 'AppleSDGothicNeoL';

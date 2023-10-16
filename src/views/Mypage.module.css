@@ -1,0 +1,34 @@
+.container {
+  margin: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.justify-content-md-center {
+  width: 80rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h2 {
+  font-family: 'AppleSDGothicNeoB';
+}
+.btn {
+  background-color: #000;
+  border-radius: 0;
+  width: 100%;
+  margin-top: 1rem;
+  font-family: 'AppleSDGothicNeoB';
+}
+.btn:hover, .btn:focus {
+  cursor: pointer;
+  background-color: #000 !important;
+  color: #fff;
+}
+.title {
+  font-family: 'AppleSDGothicNeoB';
+}
+.text {
+  text-align: left;
+}

@@ -1,6 +1,6 @@
 // Signup.js
 import React, { useState } from 'react';
-import './Signup.css';
+import styles from './Login.module.css';
 import { Container, Row, Col, Form, FormCheck, Button } from 'react-bootstrap';
 
 const Signup = () => {
@@ -36,14 +36,14 @@ const Signup = () => {
 
 
   return (
-    <Container>
-      <Row className="justify-content-md-center">
+    <Container className={styles['container']}>
+      <Row className={styles['justify-content-md-center']}>
         <Col xs={12} md={6}>
           <h2>회원가입</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formUsername">
-              <Form.Label className='label'>아이디</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>아이디</Form.Label>
+              <Form.Control className={styles.input}
                 type="text"
                 name="username"
                 placeholder="아이디를 입력하세요."
@@ -53,8 +53,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formPassword">
-              <Form.Label className='label'>비밀번호</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>비밀번호</Form.Label>
+              <Form.Control className={styles.input}
                 type="password"
                 name="password"
                 placeholder="비밀번호를 입력하세요."
@@ -64,8 +64,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formConfirmPassword">
-              <Form.Label className='label'>비밀번호 확인</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>비밀번호 확인</Form.Label>
+              <Form.Control className={styles.input}
                 type="password"
                 name="confirmPassword"
                 placeholder="비밀번호를 다시 입력하세요."
@@ -75,8 +75,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formUsername">
-              <Form.Label className='label'>이름</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>이름</Form.Label>
+              <Form.Control className={styles.input}
                 type="text"
                 name="username"
                 placeholder="이름 입력하세요."
@@ -86,8 +86,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formGender">
-              <Form.Label className='label'>성별</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>성별</Form.Label>
+              <Form.Control className={styles.input}
                 as="select"
                 name="gender"
                 value={formData.gender}
@@ -100,8 +100,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formPhoneNumber">
-              <Form.Label className='label'>연락처</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>연락처</Form.Label>
+              <Form.Control className={styles.input}
                 type="tel"
                 name="phoneNumber"
                 placeholder="예) 01012341234"
@@ -111,8 +111,8 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group controlId="formBirthdate">
-              <Form.Label className='label'>생년월일</Form.Label>
-              <Form.Control className='input'
+              <Form.Label className={styles.label}>생년월일</Form.Label>
+              <Form.Control className={styles.input}
                 type="date"
                 name="birthdate"
                 value={formData.birthdate}
@@ -129,7 +129,7 @@ const Signup = () => {
                   checked={formData.agreeTerms}
                   onChange={handleChange}
                 />
-                <FormCheck.Label className='label'>이용약관에 동의합니다.</FormCheck.Label>
+                <FormCheck.Label className={styles.label}>이용약관에 동의합니다.</FormCheck.Label>
               </FormCheck>
             </Form.Group>
 
@@ -141,11 +141,11 @@ const Signup = () => {
                   checked={formData.agreePrivacyPolicy}
                   onChange={handleChange}
                 />
-                <FormCheck.Label className='label'>개인정보 처리방침에 동의합니다.</FormCheck.Label>
+                <FormCheck.Label className={styles.label}>개인정보 처리방침에 동의합니다.</FormCheck.Label>
               </FormCheck>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className={styles.btn}>
               회원가입
             </Button>
           </Form>

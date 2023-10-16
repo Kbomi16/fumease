@@ -1,0 +1,100 @@
+/* Header */
+.header {
+  font-family: 'AppleSDGothicNeoB';
+  padding: 0.5rem;
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  z-index: 1000;
+  transition: background-color 0.3s ease; /* 투명에서 검정으로 전환 시 부드러운 효과를 위한 transition 추가 */
+}
+
+.header.scrolled {
+  background-color: black; /* 스크롤 시 배경색 변경 */
+}
+
+.logo {
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  font-family: 'AppleSDGothicNeB';
+  position: relative;
+  bottom: 0;
+  left: 0px;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  padding: 10px;
+  text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+.footerlogo {
+  margin-left: auto;
+  margin-right: auto; /* 가운데 정렬을 위해 좌우 margin을 auto로 설정 */
+  display: block; /* block 요소로 설정하여 가운데 정렬 적용 */
+  margin-top: 1.5%;
+  width: 280px;
+}
+
+.text {
+  margin: auto; /* 가운데 정렬을 위해 좌우 margin을 auto로 설정 */
+  width: 80%; /* 내용이 너무 길 경우 화면 크기에 맞게 조정 */
+}
+
+.word-container {
+  font-family: 'AppleSDGothicNeoL';
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  gap: 8%;
+  margin: 5%;
+}
+
+.ftext {
+  text-align: center;
+}
+
+.ft1 {
+  text-align: left;
+  padding-left: 3%;
+}
+
+.ft2 {
+  text-align: left;
+  padding-left: 15%;
+}
+
+.scent,
+.about,
+.buy {
+  padding-left: 0%;
+}
+
+.shoppingbag {
+  width: 45%;
+  padding: 5% 0% 0% 0%;
+}
+
+.my {
+  text-align: center;
+  padding-left: 38%;
+  padding-right: 0%;
+}
+
+.logins {
+  margin: 0%;
+  padding-left: 2%;
+}
