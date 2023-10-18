@@ -1,0 +1,78 @@
+.amain{
+    margin-top: 83.8px;
+}
+
+.asection{
+    background: #000;
+    height: 720px;
+}
+.atitle,
+.mtitle{
+    font-family: 'AppleSDGothicNeoB';
+    color: white;
+}
+.mtitle{
+    font-size: 60px;
+}
+.btn1{
+    margin-right: 2%;
+}
+.acont{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.aboutimg{
+    width:521px;
+    height:691px;
+    margin-top: -384px;
+    float: right;
+}
+.noteimg{
+    width: 450px;
+    display: block;
+    margin: 0px auto;
+}
+.jb {
+    border-top: 1px solid #444444;
+    margin: 30px auto;
+    width: 300px;
+    height: 0px;
+  }
+  .jb:after {
+    content: "◆";
+    position: relative;
+    top: -9px;
+    left: calc( 50% - 8px );
+  }
+.perfumetext,
+.notetext{
+    font-family: 'AppleSDGothicNeoB';
+
+    margin: 3%;
+    font-size: 40px;
+}
+
+.perfumecontent{
+    font-size: 20px;
+}
+.notecontent{
+    font-size: 20px;
+    margin: 3%;
+}
+
+.perfumename {
+    text-align: center;
+}
+.perfumeimg,
+.noteimg,
+.edcimg,
+.edpimg,
+.edtimg,
+.showerimg{
+    display: block;
+    margin: 0px auto;
+}
+.perfumeimg{
+    margin-top: -10%;
+
+}
