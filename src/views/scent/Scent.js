@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import YouTube from 'react-youtube';
 import styles from './Scent.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const products = [
   { id: 1, name: '향수 1', price: 50.99, imageUrl: 'url/to/product1.jpg' },
@@ -11,6 +12,8 @@ const products = [
 ];
 
 function App() {
+  const navigate = useNavigate();
+
   // YouTube 동영상의 ID
   const videoId = 'kDIlGu26XVI';
 
@@ -22,6 +25,13 @@ function App() {
       rel: 0,
       modestbranding: 1,
     },
+  };
+  // 담기 누르면 장바구니로 가기
+  const [cart, setCart] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCart([...cart, product]);
+    navigate('/cart');
   };
 
   return (
@@ -77,14 +87,14 @@ function App() {
       </div>
 
       <Row className={styles['scents']}>
-        {products.map(product => (
+        {products.map((product) => (
           <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.name}</Card.Title>
                 <Card.Text className={styles['text']}>${product.price.toFixed(2)}</Card.Text>
-                <Button variant="primary" className={styles.btn}>구매하기</Button>
+                <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
               </Card.Body>
             </Card>
           </Col>
