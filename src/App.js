@@ -17,23 +17,25 @@ import Footer from './components/Layout/Footer';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import MyPage from './views/Mypage';
-import Scent from './views/scent/Scent'
+import Scent from './views/scent/Scent';
+import About from './views/About';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/scent" element={<Scent />} />
+          <Route path="/about" element={<About />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
-     
+
 
     </div>
   );
