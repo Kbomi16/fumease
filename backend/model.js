@@ -15,6 +15,9 @@ function init(Sequelize, connection) {
         },
         f_note: {
             type: Sequelize.STRING
+        },
+        f_keyword: {
+            type: Sequelize.STRING
         }
     }, {
         tableName: "f_list",
