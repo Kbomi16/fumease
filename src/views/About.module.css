@@ -4,7 +4,7 @@
 
 .asection{
     background: #000;
-    height: 720px;
+    height: 100%;
 }
 .atitle,
 .mtitle{
@@ -24,7 +24,7 @@
 .aboutimg{
     width:521px;
     height:691px;
-    margin-top: -384px;
+    margin-top: -23.3%;
     float: right;
 }
 .noteimg{
@@ -75,4 +75,10 @@
 .perfumeimg{
     margin-top: -10%;
 
+}
+.cont{
+    font-size: 20px;
+}
+.c8{
+    margin-bottom: 2%;
 }
