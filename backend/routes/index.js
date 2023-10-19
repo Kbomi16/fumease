@@ -13,7 +13,7 @@ router.get("/recommand", async function (req, res) {
   var list = await Perfume.findAll()
   let keywordList = []
   list.forEach(perfume => {
-    keywordList.push({ name: perfume.f_name, note: perfume.f_keyword })
+    keywordList.push({ name: perfume.f_name, keyword: perfume.f_keyword, secnt: perfume.f_scent })
   })
   res.json(keywordList)
 })
