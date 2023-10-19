@@ -1,15 +1,11 @@
-
 // App.js
-
 import React from 'react';
-
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../src/fonts/Fonts.css"
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import 'normalize.css';
-
 
 import Home from './views/Home'
 import Header from './components/Layout/Header';
@@ -21,6 +17,7 @@ import Scent from './views/scent/Scent';
 import About from './views/About';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
