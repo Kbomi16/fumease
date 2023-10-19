@@ -10,8 +10,8 @@ const MyPage = () => {
       <h2 className="mt-4 mb-4">마이페이지</h2>
       
       <Row className={styles['justify-content-md-center']}>
-        <Col md={4}>
-          <Card>
+        <Col md={4} className={styles.col}>
+          <Card className={styles.card}>
             <Card.Body>
               <Card.Title className={styles['title']}>내 정보</Card.Title>
               <Card.Text className={styles['text']}>
@@ -25,7 +25,7 @@ const MyPage = () => {
         </Col>
         
         <Col md={8}>
-          <Card>
+          <Card className={styles.card}> 
             <Card.Body>
               <Card.Title className={styles['title']}>주문 내역</Card.Title>
               <Card.Text className={styles['text']}>

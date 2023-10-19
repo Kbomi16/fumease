@@ -18,22 +18,38 @@ p, .label {
   width: 100%;
   margin-top: 1rem;
   font-family: 'AppleSDGothicNeoB';
+  border: none !important;
 }
 .btn:hover, .btn:focus {
   cursor: pointer;
   background-color: #000 !important;
   color: #fff;
+  border: none !important;
 }
 
 .container {
-  margin: 15rem;
+  padding: 15rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container1 {
+  padding: 15rem;
+  width: 100%;
+  display: flex;
+   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .justify-content-md-center {
-  width: 80rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding: 10rem auto;
+  }
+}
+.form {
+  width: 80%;
 }

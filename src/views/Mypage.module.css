@@ -1,34 +1,49 @@
 .container {
-  margin: 15rem;
+  padding: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.justify-content-md-center {
-  width: 80rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 100%; 
+  width: 100vw; 
+  margin: 0 auto; 
 }
 h2 {
   font-family: 'AppleSDGothicNeoB';
+  text-align: center;
 }
+
 .btn {
   background-color: #000;
   border-radius: 0;
   width: 100%;
   margin-top: 1rem;
   font-family: 'AppleSDGothicNeoB';
+  border: none !important;
 }
+
 .btn:hover, .btn:focus {
   cursor: pointer;
   background-color: #000 !important;
   color: #fff;
+  border: none !important;
 }
+
 .title {
   font-family: 'AppleSDGothicNeoB';
 }
+
 .text {
   text-align: left;
+}
+
+.card {
+  width: 30rem;
+}
+.justify-content-md-center {
+  display: flex;
+  flex-direction: column;
+}
+.col {
+  margin-bottom: 3rem;
 }

@@ -72,7 +72,7 @@ function App() {
                 <div className="p-5">
                     <h3 className={styles.perfumename}>오 드 퍼퓸 (EDP) </h3>
                     <h3 className={styles.perfumename}>Eau De Perfume </h3>
-                    <img className={styles.edpimg} src="edp.png" alt="edpimg" />
+                    <img className={styles.edpimg} src="img/edp.png" alt="edpimg" />
                     <p>향 첨가율이 8~15%이며, 최대 8시간동안 지속됩니다. <br></br>
                         대중들이 가장 선호하는 향과 지속력을 가지고 있습니다.<br></br>
                         시중에 출시되는 향수는 오드퍼퓸이 많습니다.</p>
