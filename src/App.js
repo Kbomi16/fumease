@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,7 +14,6 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import MyPage from './views/Mypage';
 import Scent from './views/scent/Scent'
-import Cart from './views/cart/Cart'
 
 function App() {
 
@@ -28,7 +27,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/scent" element={<Scent />} />
-          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

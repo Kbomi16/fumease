@@ -1,11 +1,10 @@
 // Home.js
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css'; // styles를 import
 
 
 const Home = () => {
-  const [selectedKeyword, setSelectedKeyword] = useState(null);
 
   const handleKeywordSelect = (keyword) => {
     console.log('Selected Keyword:', keyword);
@@ -31,8 +30,6 @@ const Home = () => {
       default:
         break;
     }
-
-    setSelectedKeyword(keyword);
   };
 
   return (
