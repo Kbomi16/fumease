@@ -44,31 +44,31 @@ function App() {
 
       <div className={styles['circle-container']}>
           <div className='brand1'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/j.png'></img></div>
             <p className={styles.brand}>조말론</p>
           </div>
           <div className='brand2'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/t.png'></img></div>
             <p className={styles.brand}>탬버린즈</p>
           </div>
           <div className='brand3'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/n.png'></img></div>
             <p className={styles.brand}>논픽션</p>
           </div>
           <div className='brand4'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>딥티크</p>
+            <div className={styles.circle}><img src='img/brand/d.png'></img></div>
+            <p className={styles.brand}>딥디크</p>
           </div>
           <div className='brand5'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/di.png'></img></div>
             <p className={styles.brand}>디올</p>
           </div>
           <div className='brand6'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/bi.png'></img></div>
             <p className={styles.brand}>바이레도</p>
           </div>
           <div className='brand7'>
-            <div className={styles.circle}></div>
+            <div className={styles.circle}><img src='img/brand/san.png'></img></div>
             <p className={styles.brand}>산타마리아노벨리</p>
           </div>
           

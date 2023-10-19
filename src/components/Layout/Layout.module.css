@@ -93,6 +93,7 @@ nav a {
   text-align: center;
   padding-left: 38%;
   padding-right: 0%;
+  cursor: pointer;
 }
 
 .logins {
