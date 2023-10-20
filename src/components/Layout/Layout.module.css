@@ -99,3 +99,26 @@ nav a {
   margin: 0%;
   padding-left: 2%;
 }
+
+@media screen and (max-width: 1350px) {
+  .word-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ft1,
+  .ft2,
+  .scent,
+  .about,
+  .buy,
+  .shoppingbag,
+  .my,
+  .logins {
+    padding-left: 0%;
+  }
+
+  .my {
+    padding-left: 0%;
+    text-align: left;
+  }
+}

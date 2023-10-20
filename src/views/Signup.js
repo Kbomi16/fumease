@@ -36,11 +36,9 @@ const Signup = () => {
 
 
   return (
-    <Container className={styles['container']}>
-      <Row className={styles['justify-content-md-center']}>
-        <Col xs={12} md={6}>
+    <Container className={styles['container1']}>
           <h2>회원가입</h2>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className={styles.form}>
             <Form.Group controlId="formUsername">
               <Form.Label className={styles.label}>아이디</Form.Label>
               <Form.Control className={styles.input}
@@ -149,8 +147,6 @@ const Signup = () => {
               회원가입
             </Button>
           </Form>
-        </Col>
-      </Row>
     </Container>
   );
 };
