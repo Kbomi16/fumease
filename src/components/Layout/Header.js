@@ -31,7 +31,7 @@ function Header() {
           <li className={styles.home}><Link to="/">HOME</Link></li>
           <li className={styles.scent}><Link to="/scent">THE SCENT</Link></li>
           <li className={styles.about}><Link to="/about">ABOUT</Link></li>
-      
+
           <li className={styles.my}><Link to="/my">MY</Link></li>
           <li className={styles.logins}><Link to="/login">LOGIN</Link></li>
           <Link to="/cart"><img className={styles.shoppingbag} src="shoppingbag.png" alt="쇼핑백" /></Link>

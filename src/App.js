@@ -15,6 +15,7 @@ import Signup from './views/Signup';
 import MyPage from './views/Mypage';
 import Scent from './views/scent/Scent';
 import About from './views/About';
+import Detail from './views/Detail';
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
           <Route path="/my" element={<MyPage />} />
           <Route path="/scent" element={<Scent />} />
           <Route path="/about" element={<About />} />
+          <Route path="/detail" element={<Detail />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

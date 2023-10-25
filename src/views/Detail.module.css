@@ -1,0 +1,43 @@
+.amain{
+    margin-top: 83.8px;
+}
+
+.brandimg{
+    width: 500px;
+    float: right;
+    margin-top: -38%;
+    margin-left: 0%;
+    margin-right: 5%;
+}
+.dtitle{
+    margin: 5%;
+    font-size: 30px;
+}
+.brandname{
+    margin: 10% 0% 0% 52.5%;
+}
+.noteimg{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+.noteimg1{
+    /* maring-left: 60%; */
+}
+.noteimg3{
+    /* margin-right:30%; */
+}
+.notebest{    margin-left: 25%;
+
+}
+.textbest{
+    margin-left:40%;
+}
+.middlecontent,
+.thirdcontent 
+{
+    text-align: center;
+}
+.thirdcontent{
+    margin-bottom: 5%;
+}
