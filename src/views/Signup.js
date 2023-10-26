@@ -1,7 +1,7 @@
 // Signup.js
 import React, { useState } from 'react';
 import styles from './Login.module.css';
-import { Container, Row, Col, Form, FormCheck, Button } from 'react-bootstrap';
+import { Container, Form, FormCheck, Button } from 'react-bootstrap';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
