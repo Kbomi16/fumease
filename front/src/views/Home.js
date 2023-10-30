@@ -2,9 +2,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css'; // styles를 import
+import { useEffect, useState } from 'react';
 
 
 const Home = () => {
+  const [keywords, setKeywords] = useState([]);
+
+  useEffect(() => {
+    // 서버에서 키워드 목록을 가져오는 API 호출
+    fetch('/keywords')
+      .then((response) => response.json())
+      .then((data) => setKeywords(data))
+      .catch((error) => console.error('Error fetching keywords:', error));
+  }, []);
 
   const handleKeywordSelect = (keyword) => {
     console.log('Selected Keyword:', keyword);
@@ -52,17 +62,17 @@ const Home = () => {
         <div className={styles.ai}>
           <h1>TODAY PERFUME</h1>
           <p>오늘의 날씨와 기분에 따라 원하는 키워드를 선택해보세요.</p>
+
           <div className={styles['keyword-buttons']}>
-            <button className={styles.keyword} onClick={() => handleKeywordSelect('우드')}>
-            우드
-            </button>
-            <button className={styles.keyword} onClick={() => handleKeywordSelect('머스크')}>
-            머스크
-            </button>
-            <button className={styles.keyword} onClick={() => handleKeywordSelect('살냄새')}>
-            살냄새
-            </button>
+          {keywords.map((keyword) => (
+          <button
+            key={keyword.id}
+            className={styles.keyword}
+            onClick={() => handleKeywordSelect(keyword.name)}
+          > {keyword.name}</button>
+        ))}
           </div>
+
           <button className={styles.aiBtn}>추천 향수 보기</button>
         </div>
       </div>

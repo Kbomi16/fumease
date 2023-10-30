@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //Express 호출 후 새로운 Express 애플리케이션을 변수(app)에 넣기
@@ -27,6 +28,18 @@ var sessionStore = new MySQLStore({
   database: 'fumease'
 });
 
+// 키워드 목록 가져오기
+app.get('/', (req, res) => {
+  sessionStore.query('SELECT * FROM f_list', (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching keywords');
+    } else {
+      res.json(results);
+    }
+  })
+})
+
 var modelInit = require("./model.js");
 modelInit(Sequelize, sequelize)
 
@@ -39,6 +52,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
