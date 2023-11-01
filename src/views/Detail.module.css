@@ -4,9 +4,7 @@
 
 .brandimg{
     width: 500px;
-    float: right;
-    margin-top: -38%;
-    margin-left: 0%;
+    margin-left: 10%;
     margin-right: 5%;
 }
 .dtitle{
@@ -40,4 +38,30 @@
 }
 .thirdcontent{
     margin-bottom: 5%;
+}
+.aimg{
+    width: 250px;
+    margin-left: 5%;
+    margin-top: -170%;
+
+
+}
+.jb {
+    border-top: 1px solid #444444;
+    margin: 30px auto;
+    width: 300px;        
+    
+  }
+
+.brandcont{
+    margin: 3% 0% 3% 10%;
+}
+.price,
+.name
+{
+    text-align: center;
+}
+.c{
+    font-family: 'AppleSDGothicNeoB';
+
 }
