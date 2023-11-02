@@ -12,7 +12,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('fumease', 'root', 'yun0415', {
+const sequelize = new Sequelize('fumease', 'root', '1234', {
   host: '127.0.0.1',
   dialect: "mysql",
   logging: false
@@ -24,21 +24,23 @@ var sessionStore = new MySQLStore({
   host: "127.0.0.1",
   port: 3306,
   user: 'root',
-  password: 'yun0415',
+  password: '1234',
   database: 'fumease'
 });
 
+
+
 // 키워드 목록 가져오기
-app.get('/', (req, res) => {
-  sessionStore.query('SELECT * FROM f_list', (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error fetching keywords');
-    } else {
-      res.json(results);
-    }
-  })
-})
+app.get('/', async (req, res) => {
+  try {
+    const results = await sessionStore.query('SELECT * FROM f_list');
+    res.json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching keywords');
+  }
+});
+
 
 var modelInit = require("./model.js");
 modelInit(Sequelize, sequelize)
