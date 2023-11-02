@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Layout.module.css';
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,12 +15,24 @@ function Header() {
 
     window.addEventListener('scroll', handleScroll);
 
+    // Clean up event listener
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const isMainPage = location.pathname === '/'; // 메인 페이지 여부 확인
+
+  const handleMyClick = () => {
+    if (isLoggedIn) {
+      // 로그인 되어 있으면 My 페이지로 이동
+      // 예시: history.push('/my');
+    } else {
+      // 로그인 되어 있지 않으면 로그인 알림창 표시
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
+  };
 
   return (
     <header className={`${styles.header} ${isMainPage && scrollPosition === 0 ? '' : styles.scrolled}`}>
