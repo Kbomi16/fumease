@@ -17,14 +17,15 @@ const sequelize = new Sequelize('fumease', 'root', '1234', {
   dialect: "mysql",
   logging: false
 });
+require('dotenv').config()
 
 var session = require("express-session")
 const MySQLStore = require('express-mysql-session')(session);
 var sessionStore = new MySQLStore({
   host: "127.0.0.1",
   port: 3306,
-  user: 'root',
-  password: '1234',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
   database: 'fumease'
 });
 
