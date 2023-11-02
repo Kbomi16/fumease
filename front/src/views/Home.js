@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     // 백엔드 API 엔드포인트에 GET 요청 보내기
-    fetch('/keywords')
+    fetch('/perfumes')
       .then((response) => response.json())
       .then((data) => setKeywords(data))
       .catch((error) => console.error('Error fetching keywords:', error));
@@ -49,11 +49,11 @@ const Home = () => {
           <div className={styles['keyword-buttons']}>
         {keywords.map((keyword) => (
           <button
-            key={keyword}
+            key={keyword.id}
             className={styles.keyword}
-            onClick={() => handleKeywordSelect(keyword)}
+            onClick={() => handleKeywordSelect(keyword.name)}
           >
-            {keyword}
+            {keyword.f_name} - {keyword.f_price}
           </button>
         ))}
       </div>
