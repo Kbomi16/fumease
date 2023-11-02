@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import styles from './Detail.module.css';
 import { Button } from 'react-bootstrap';
@@ -40,11 +40,8 @@ function App() {
           </div>
 
         </Stack>
-
-
-
-
       </Stack>
+
     </div >
   );
 }
