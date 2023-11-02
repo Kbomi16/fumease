@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 
 const Home = () => {
   const [keywords, setKeywords] = useState([]);
+  const [selectedKeyword, setSelectedKeyword] = useState(null);
+  const [perfumes, setPerfumes] = useState([]);
 
   useEffect(() => {
-    // 서버에서 키워드 목록을 가져오는 API 호출
+    // 백엔드 API 엔드포인트에 GET 요청 보내기
     fetch('/keywords')
       .then((response) => response.json())
       .then((data) => setKeywords(data))
@@ -17,29 +19,11 @@ const Home = () => {
   }, []);
 
   const handleKeywordSelect = (keyword) => {
-    console.log('Selected Keyword:', keyword);
-
-    // 선택한 키워드에 따라 원하는 동작 수행
-    switch (keyword) {
-      case '우드':
-        // Fresh 키워드에 대한 동작
-        console.log('You selected Fresh!');
-        // 추가적인 동작을 수행하거나 상태 변경 등을 처리할 수 있습니다.
-        break;
-      case '머스크':
-        // Floral 키워드에 대한 동작
-        console.log('You selected Floral!');
-        // 추가적인 동작을 수행하거나 상태 변경 등을 처리할 수 있습니다.
-        break;
-      case '살냄새':
-        // Citrus 키워드에 대한 동작
-        console.log('You selected Citrus!');
-        // 추가적인 동작을 수행하거나 상태 변경 등을 처리할 수 있습니다.
-        break;
-      // 추가적인 키워드에 대한 처리를 추가할 수 있습니다.
-      default:
-        break;
-    }
+    setSelectedKeyword(keyword);
+    fetch(`/perfumes?keyword=${keyword}`)
+      .then((response) => response.json())
+      .then((data) => setPerfumes(data))
+      .catch((error) => console.error('Error fetching perfumes:', error));
   };
 
   return (
@@ -62,16 +46,27 @@ const Home = () => {
         <div className={styles.ai}>
           <h1>TODAY PERFUME</h1>
           <p>오늘의 날씨와 기분에 따라 원하는 키워드를 선택해보세요.</p>
-
           <div className={styles['keyword-buttons']}>
-          {keywords.map((keyword) => (
+        {keywords.map((keyword) => (
           <button
-            key={keyword.id}
+            key={keyword}
             className={styles.keyword}
-            onClick={() => handleKeywordSelect(keyword.name)}
-          > {keyword.name}</button>
+            onClick={() => handleKeywordSelect(keyword)}
+          >
+            {keyword}
+          </button>
         ))}
-          </div>
+      </div>
+      <div>
+        <h1>Selected Keyword: {selectedKeyword}</h1>
+        <ul>
+          {perfumes.map((perfume, index) => (
+            <li key={index}>
+              {perfume.f_name} - Price: {perfume.f_price}
+            </li>
+          ))}
+        </ul>
+      </div>
 
           <button className={styles.aiBtn}>추천 향수 보기</button>
         </div>

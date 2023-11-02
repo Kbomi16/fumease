@@ -22,14 +22,13 @@ function init(Sequelize, connection) {
     }, {
         tableName: "f_list",
         createdAt: false,
-
-        // If don't want updatedAt
         updatedAt: false,
     })
 
     connection.sync({
         alert: true
     })
+
 }
 
 module.exports = init

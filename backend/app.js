@@ -30,20 +30,7 @@ var sessionStore = new MySQLStore({
 });
 
 
-
-// 키워드 목록 가져오기
-app.get('/', async (req, res) => {
-  try {
-    const keywords = await sessionStore.query('SELECT f_keywords FROM f_list');
-    res.json(keywords);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching keywords');
-  }
-});
-
-
-var modelInit = require("./model.js");
+var modelInit = require("./model.js").default;
 modelInit(Sequelize, sequelize)
 
 // view engine setup
@@ -75,6 +62,23 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// 키워드 목록 가져오기
+app.get('/perfumes', async (req, res) => {
+  try {
+    const selectedKeyword = req.query.keyword
+    const perfumes = await Perfume.findAll({
+      attributes: ['f_name', 'f_price'],
+      where: {
+        f_keyword: selectedKeyword
+      }
+    });
+    res.json(perfumes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching perfumes');
+  }
 });
 
 module.exports = app;
