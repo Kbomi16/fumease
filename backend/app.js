@@ -34,8 +34,8 @@ var sessionStore = new MySQLStore({
 // 키워드 목록 가져오기
 app.get('/', async (req, res) => {
   try {
-    const results = await sessionStore.query('SELECT * FROM f_list');
-    res.json(results);
+    const keywords = await sessionStore.query('SELECT f_keywords FROM f_list');
+    res.json(keywords);
   } catch (err) {
     console.error(err);
     res.status(500).send('Error fetching keywords');
