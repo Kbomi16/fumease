@@ -39,51 +39,52 @@ function App() {
       <YouTube videoId={videoId} opts={opts} />
       <div className={styles.text1}>
         <h1 className={`${styles.mt4} ${styles.mb4}`}>퍼퓸 컬렉션</h1>
-        <p>[SOLACE: 한줌의 위안] <br/>위안에서 오는 다양한 감정을 표현한 이번 향수 컬렉션은 시간이 흐르면서 일어나는 다채로운 향의 변화를 온전히 느낄 수 있는 향수입니다.<br/> 세상에 흩어진 모든 이야기에서 영감을 받은 감각적인 향이 단조로운 일상에 자유롭고 새로운 리듬을 부여합니다. 규정되지 않은 아름다움을 향수를 통해 경험해보세요.</p>
+        <p>[SOLACE: 한줌의 위안] <br />위안에서 오는 다양한 감정을 표현한 이번 향수 컬렉션은 시간이 흐르면서 일어나는 다채로운 향의 변화를 온전히 느낄 수 있는 향수입니다.<br /> 세상에 흩어진 모든 이야기에서 영감을 받은 감각적인 향이 단조로운 일상에 자유롭고 새로운 리듬을 부여합니다. 규정되지 않은 아름다움을 향수를 통해 경험해보세요.</p>
       </div>
 
       <div className={styles['circle-container']}>
-          <div className='brand1'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>조말론</p>
+        <div className='brand1'>
+          <div className={styles.circle}>
           </div>
-          <div className='brand2'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>탬버린즈</p>
-          </div>
-          <div className='brand3'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>논픽션</p>
-          </div>
-          <div className='brand4'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>이솝</p>
-          </div>
-          <div className='brand5'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>딥티크</p>
-          </div>
-          <div className='brand6'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>샤넬</p>
-          </div>
-          <div className='brand7'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>디올</p>
-          </div>
-          <div className='brand8'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>바이레도</p>
-          </div>
-          <div className='brand9'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>산타마리아노벨리</p>
-          </div>
-          <div className='brand10'>
-            <div className={styles.circle}></div>
-            <p className={styles.brand}>버버리</p>
-          </div>
-          
+          <p className={styles.brand}>조말론</p>
+        </div>
+        <div className='brand2'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>탬버린즈</p>
+        </div>
+        <div className='brand3'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>논픽션</p>
+        </div>
+        <div className='brand4'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>이솝</p>
+        </div>
+        <div className='brand5'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>딥티크</p>
+        </div>
+        <div className='brand6'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>샤넬</p>
+        </div>
+        <div className='brand7'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>디올</p>
+        </div>
+        <div className='brand8'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>바이레도</p>
+        </div>
+        <div className='brand9'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>산타마리아노벨리</p>
+        </div>
+        <div className='brand10'>
+          <div className={styles.circle}></div>
+          <p className={styles.brand}>버버리</p>
+        </div>
+
       </div>
 
       <Row className={styles['scents']}>

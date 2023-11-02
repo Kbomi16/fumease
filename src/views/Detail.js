@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import styles from './Detail.module.css';
+import { Button } from 'react-bootstrap';
+
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
 
         <Stack direction="horizontal" gap={3}>
           <div className="p-2">
-            <img className={styles.aimg} src="img/aesop_logo.png" alt="aesop" />
+            <img className={styles.aimg} src="logo/aesop_logo.png" alt="aesop" />
           </div>
           <div className="p-2">
             <img className={styles.brandimg} src="img/aesop_rose_edp.avif" alt="aesop_rose" />
@@ -27,6 +29,8 @@ function App() {
             <div className={styles.jb}></div>
 
             <h3 className={styles.price}>210,000</h3>
+            <Button variant="outline-dark" className={styles.add}>장바구니 추가</Button>
+
             <div className={styles.jb}></div>
             <p className={styles.c} >향</p>
             <p>플로럴, 그린, 우디</p>
