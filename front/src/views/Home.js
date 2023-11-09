@@ -6,22 +6,62 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Home = () => {
+  // 키워드 가져오기
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
-    // 서버에서 향수 키워드 데이터를 가져오는 요청
-    axios.get('http://localhost:3001/scent', {
+    axios.get('http://localhost:3001/keyword', {
       headers: {
         'Access-Control-Allow-Origin': '*', // 허용할 Origin
       },
     })
       .then((response) => {
-        setKeywords(response.data);
+        const keywordArray = response.data;
+        // 데이터가 배열인지 확인
+        if (Array.isArray(keywordArray)) {
+          // 모든 키워드를 쪼개어 각 단어로 분할
+          const allKeywords = keywordArray.reduce((acc, keyword) => {
+            const keywords = keyword.f_keyword.split(',').map(keyword => keyword.trim());
+            return [...acc, ...keywords];
+          }, []);
+  
+          // 중복 제거를 위해 Set 사용
+        const uniqueKeywords = Array.from(new Set(allKeywords));
+        setKeywords(uniqueKeywords);
+
+        
+        } else {
+          console.error('Received invalid data', keywordArray);
+        }
       })
       .catch((error) => {
         console.error('Error fetching keywords:', error);
       });
-  }, []); // 빈 배열을 두 번째 매개변수로 전달하여 한 번만 실행
+  }, []);
+
+  //선택한 키워드로 향수 추천해주기
+  const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [recommendedPerfumes, setRecommendedPerfumes] = useState([]);
+
+  //사용자가 키워드를 선택할 때 호출된다.
+  const handleKeywordSelection = (keyword) => {
+    if (selectedKeywords.length < 3) {
+      setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
+    }
+  };
+
+  //키워드 선택이 완료되면 추천 향수를 가져온다.
+  const fetchRecommendedPerfumes = () => {
+    axios.get(`/list?keywords=${selectedKeywords.join(',')}`)
+      .then((response) => {
+        setRecommendedPerfumes(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching recommended perfumes:', error);
+      });
+  };
+
+
 
   return (
       <div className={styles['main-page']}>
@@ -42,23 +82,48 @@ const Home = () => {
 
         <div className={styles.ai}>
           <h1>TODAY PERFUME</h1>
-          <p>오늘의 날씨와 기분에 따라 원하는 키워드를 선택해보세요.</p>
+          <p>오늘의 날씨와 기분에 따라 원하는 키워드 3가지를 선택해보세요.</p>
           <div className={styles['keyword-buttons']}>
-          {keywords.map((keyword) => (
-          <button
-            key={keyword.f_id}
-            className={styles.keyword}
-          >
-            {keyword.f_name} - {keyword.f_price}
-          </button>
-        ))}
+          {keywords.map((keyword, index) => {
+  // 이전에 keyword가 #으로 시작하는지 확인
+  const isHexColor = keyword.startsWith('#');
+  // 버튼 스타일을 동적으로 설정
+  const buttonStyle = isHexColor ? { backgroundColor: keyword } : {};
+
+  // hex값이 검정색인 경우 글자 색을 흰색으로 설정
+  if (isHexColor && keyword === "#000000") {
+    buttonStyle.color = 'white';
+  }
+
+  return (
+    <button key={index} className={styles.keyword} style={buttonStyle}>
+      {keyword}
+    </button>
+  );
+})}
       </div>
       <div>
       </div>
-
-          <button className={styles.aiBtn}>추천 향수 보기</button>
+          <div>
+        {/* 키워드 선택 UI */}
+        {keywords.map((keyword, index) => (
+          <button key={index} onClick={() => handleKeywordSelection(keyword)}>
+            {keyword}
+          </button>
+        ))}
+      </div>
+      <button className={styles.aiBtn}>추천 향수 보기</button>
+      <div>
+        {/* 추천 향수 표시 */}
+        {recommendedPerfumes.map((perfume, index) => (
+            <div key={index}>
+              <p>{perfume.name}</p>
+              <p>{perfume.description}</p>
+            </div>
+          ))}
         </div>
       </div>
+        </div>
   );
 };
 

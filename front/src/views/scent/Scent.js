@@ -6,6 +6,7 @@ import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 function App() {
   const navigate = useNavigate();
 
@@ -89,12 +90,12 @@ useEffect(() => {
 
       <Row className={styles['scents']}>
       {products.map((product) => (
-          <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
+          <Col key={product.f_id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title className={styles['title']}>{product.name}</Card.Title>
-                <Card.Text className={styles['text']}>${product.price.toFixed(2)}</Card.Text>
+                <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
+                <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
                 <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
               </Card.Body>
             </Card>

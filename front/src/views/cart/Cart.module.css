@@ -1,0 +1,23 @@
+.container {
+  padding: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'AppleSDGothicNeoB';
+}
+.btn {
+  background-color: #000;
+  border-radius: 0;
+  width: 100%;
+  margin-top: 1rem;
+  font-family: 'AppleSDGothicNeoB';
+}
+.title {
+  font-family: 'AppleSDGothicNeoB';
+}
+.text {
+  text-align: left;
+}   

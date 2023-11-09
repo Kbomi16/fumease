@@ -6,10 +6,9 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get("/list", async function (req, res) {
-  console.log("list")
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_name', 'f_price']
+      attributes: ['f_id','f_name', 'f_price']
     });
     res.json(products);
   } catch (error) {
@@ -28,6 +27,17 @@ router.get("/recommand", async function (req, res) {
   })
   res.json(keywordList)
 })
+router.get("/keyword", async function (req, res) {
+  try {
+    const products = await Perfume.findAll({
+      attributes: ['f_id','f_keyword']
+    });
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).send('Error fetching products');
+  }
+});
 
 
 module.exports = router;
