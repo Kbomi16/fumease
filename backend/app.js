@@ -11,13 +11,14 @@ var usersRouter = require('./routes/users');
 //Express 호출 후 새로운 Express 애플리케이션을 변수(app)에 넣기
 var app = express();
 
+require('dotenv').config()
+
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('fumease', 'root', '1234', {
+const sequelize = new Sequelize('p1', process.env.DB_USER, process.env.DB_PASS, {
   host: '127.0.0.1',
   dialect: "mysql",
   logging: false
 });
-require('dotenv').config()
 
 var session = require("express-session")
 const MySQLStore = require('express-mysql-session')(session);
@@ -30,8 +31,11 @@ var sessionStore = new MySQLStore({
 });
 
 
-var modelInit = require("./model.js").default;
-modelInit(Sequelize, sequelize)
+// var modelInit = require("./model.js").default;
+// modelInit(Sequelize, sequelize)
+var init = require("./model.js");
+
+init(Sequelize, sequelize);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -2,9 +2,24 @@ import React, { useEffect, useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import styles from './Detail.module.css';
 import { Button } from 'react-bootstrap';
+import axios from "axios";
+
 
 
 function App() {
+
+  async function getData() {
+    try {
+      //응답 성공
+      const response = await axios.get('http://localhost:3001/list');
+      console.log(response);
+      console.log(response[0][0].f_name)
+    } catch (error) {
+      //응답 실패
+      console.error(error);
+    }
+  }
+  getData()
   return (
     <div className={styles.amain}>
 
