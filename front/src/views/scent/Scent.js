@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import YouTube from 'react-youtube';
 import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
-
-const products = [
-  { id: 1, name: '향수 1', price: 50.99, imageUrl: 'url/to/product1.jpg' },
-  { id: 2, name: '향수 2', price: 65.99, imageUrl: 'url/to/product2.jpg' },
-  // Add more products
-];
+import axios from 'axios';
 
 function App() {
   const navigate = useNavigate();
@@ -26,6 +21,24 @@ function App() {
       modestbranding: 1,
     },
   };
+
+
+// 백엔드에서 가져온 제품 데이터를 저장할 상태
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+  // 백엔드 서버에서 제품 데이터를 가져오는 요청
+  axios.get('http://localhost:3001/list').then((response) => {
+      const products = response.data
+      setProducts(products);
+    })
+    .catch((error) => {
+      console.error('Error fetching products:', error);
+    });
+}, []);
+
+
+
   // 담기 누르면 장바구니로 가기
   const [cart, setCart] = useState([]);
 
@@ -88,7 +101,7 @@ function App() {
       </div>
 
       <Row className={styles['scents']}>
-        {products.map((product) => (
+      {products.map((product) => (
           <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
