@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 //Express를 변수에 담기
 var express = require('express');
+const cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,13 +12,14 @@ var usersRouter = require('./routes/users');
 //Express 호출 후 새로운 Express 애플리케이션을 변수(app)에 넣기
 var app = express();
 
+require('dotenv').config()
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('fumease', 'root', '1234', {
+const sequelize = new Sequelize('fumease', process.env.DB_USER, process.env.DB_PASS, {
   host: '127.0.0.1',
   dialect: "mysql",
   logging: false
 });
-require('dotenv').config()
+
 
 var session = require("express-session")
 const MySQLStore = require('express-mysql-session')(session);
@@ -30,7 +32,7 @@ var sessionStore = new MySQLStore({
 });
 
 
-var modelInit = require("./model.js").default;
+var modelInit = require("./model");
 modelInit(Sequelize, sequelize)
 
 // view engine setup
@@ -43,15 +45,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORS 설정
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -64,22 +63,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// 키워드 목록 가져오기
-app.get('/perfumes', async (req, res) => {
-  try {
-    const selectedKeyword = req.query.keyword
-    const perfumes = await Perfume.findAll({
-      attributes: ['f_name', 'f_price'],
-      where: {
-        f_keyword: selectedKeyword
-      }
-    });
-    res.json(perfumes);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching perfumes');
-  }
-});
+
 
 module.exports = app;
 

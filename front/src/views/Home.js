@@ -3,28 +3,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css'; // styles를 import
 import { useEffect, useState } from 'react';
-
+import axios from 'axios';
 
 const Home = () => {
   const [keywords, setKeywords] = useState([]);
-  const [selectedKeyword, setSelectedKeyword] = useState(null);
-  const [perfumes, setPerfumes] = useState([]);
 
   useEffect(() => {
-    // 백엔드 API 엔드포인트에 GET 요청 보내기
-    fetch('/perfumes')
-      .then((response) => response.json())
-      .then((data) => setKeywords(data))
-      .catch((error) => console.error('Error fetching keywords:', error));
-  }, []);
-
-  const handleKeywordSelect = (keyword) => {
-    setSelectedKeyword(keyword);
-    fetch(`/perfumes?keyword=${keyword}`)
-      .then((response) => response.json())
-      .then((data) => setPerfumes(data))
-      .catch((error) => console.error('Error fetching perfumes:', error));
-  };
+    // 서버에서 향수 키워드 데이터를 가져오는 요청
+    axios.get('http://localhost:3001/scent', {
+      headers: {
+        'Access-Control-Allow-Origin': '*', // 허용할 Origin
+      },
+    })
+      .then((response) => {
+        setKeywords(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching keywords:', error);
+      });
+  }, []); // 빈 배열을 두 번째 매개변수로 전달하여 한 번만 실행
 
   return (
       <div className={styles['main-page']}>
@@ -47,25 +44,16 @@ const Home = () => {
           <h1>TODAY PERFUME</h1>
           <p>오늘의 날씨와 기분에 따라 원하는 키워드를 선택해보세요.</p>
           <div className={styles['keyword-buttons']}>
-        {keywords.map((keyword) => (
+          {keywords.map((keyword) => (
           <button
-            key={keyword.id}
+            key={keyword.f_id}
             className={styles.keyword}
-            onClick={() => handleKeywordSelect(keyword.name)}
           >
             {keyword.f_name} - {keyword.f_price}
           </button>
         ))}
       </div>
       <div>
-        <h1>Selected Keyword: {selectedKeyword}</h1>
-        <ul>
-          {perfumes.map((perfume, index) => (
-            <li key={index}>
-              {perfume.f_name} - Price: {perfume.f_price}
-            </li>
-          ))}
-        </ul>
       </div>
 
           <button className={styles.aiBtn}>추천 향수 보기</button>

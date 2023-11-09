@@ -25,10 +25,11 @@ function init(Sequelize, connection) {
         updatedAt: false,
     })
 
+    
     connection.sync({
         alert: true
     })
 
 }
 
-module.exports = init
+module.exports = init;
