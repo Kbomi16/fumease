@@ -1,5 +1,5 @@
 // App.js
-import {React} from 'react';
+import { React } from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -17,6 +17,8 @@ import Scent from './views/scent/Scent';
 import About from './views/About';
 import Detail from './views/Detail';
 
+
+
 function App() {
 
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/my" element={<MyPage />} />
           <Route path="/scent" element={<Scent />} />
           <Route path="/about" element={<About />} />
+          {/* <Route path="/detail" element={<Detail />} /> */}
           <Route path="/detail" element={<Detail />} />
 
         </Routes>

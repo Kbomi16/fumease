@@ -6,6 +6,7 @@ import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 function App() {
   const navigate = useNavigate();
 
@@ -23,19 +24,19 @@ function App() {
   };
 
 
-// 백엔드에서 가져온 제품 데이터를 저장할 상태
-const [products, setProducts] = useState([]);
+  // 백엔드에서 가져온 제품 데이터를 저장할 상태
+  const [products, setProducts] = useState([]);
 
-useEffect(() => {
-  // 백엔드 서버에서 제품 데이터를 가져오는 요청
-  axios.get('http://localhost:3001/list').then((response) => {
+  useEffect(() => {
+    // 백엔드 서버에서 제품 데이터를 가져오는 요청
+    axios.get('http://localhost:3001/list').then((response) => {
       const products = response.data
       setProducts(products);
     })
-    .catch((error) => {
-      console.error('Error fetching products:', error);
-    });
-}, []);
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
 
 
 
@@ -57,57 +58,44 @@ useEffect(() => {
 
       <div className={styles['circle-container']}>
         <div className='brand1'>
-          <div className={styles.circle}>
-          </div>
+          <div className={styles.circle}><img src='img/brand/j.png'></img></div>
           <p className={styles.brand}>조말론</p>
         </div>
         <div className='brand2'>
-          <div className={styles.circle}></div>
+          <div className={styles.circle}><img src='img/brand/t.png'></img></div>
           <p className={styles.brand}>탬버린즈</p>
         </div>
         <div className='brand3'>
-          <div className={styles.circle}></div>
+          <div className={styles.circle}><img src='img/brand/n.png'></img></div>
           <p className={styles.brand}>논픽션</p>
         </div>
         <div className='brand4'>
-          <div className={styles.circle}></div>
-          <p className={styles.brand}>이솝</p>
+          <div className={styles.circle}><img src='img/brand/d.png'></img></div>
+          <p className={styles.brand}>딥디크</p>
         </div>
         <div className='brand5'>
-          <div className={styles.circle}></div>
-          <p className={styles.brand}>딥티크</p>
-        </div>
-        <div className='brand6'>
-          <div className={styles.circle}></div>
-          <p className={styles.brand}>샤넬</p>
-        </div>
-        <div className='brand7'>
-          <div className={styles.circle}></div>
+          <div className={styles.circle}><img src='img/brand/di.png'></img></div>
           <p className={styles.brand}>디올</p>
         </div>
-        <div className='brand8'>
-          <div className={styles.circle}></div>
+        <div className='brand6'>
+          <div className={styles.circle}><img src='img/brand/bi.png'></img></div>
           <p className={styles.brand}>바이레도</p>
         </div>
-        <div className='brand9'>
-          <div className={styles.circle}></div>
+        <div className='brand7'>
+          <div className={styles.circle}><img src='img/brand/san.png'></img></div>
           <p className={styles.brand}>산타마리아노벨리</p>
-        </div>
-        <div className='brand10'>
-          <div className={styles.circle}></div>
-          <p className={styles.brand}>버버리</p>
         </div>
 
       </div>
 
       <Row className={styles['scents']}>
-      {products.map((product) => (
-          <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
+        {products.map((product) => (
+          <Col key={product.f_id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title className={styles['title']}>{product.name}</Card.Title>
-                <Card.Text className={styles['text']}>${product.price.toFixed(2)}</Card.Text>
+                <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
+                <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
                 <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
               </Card.Body>
             </Card>
