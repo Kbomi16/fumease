@@ -41,24 +41,12 @@ const Home = () => {
 
   //선택한 키워드로 향수 추천해주기
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const [recommendedPerfumes, setRecommendedPerfumes] = useState([]);
 
   //사용자가 키워드를 선택할 때 호출된다.
   const handleKeywordSelection = (keyword) => {
     if (selectedKeywords.length < 3) {
       setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
     }
-  };
-
-  //키워드 선택이 완료되면 추천 향수를 가져온다.
-  const fetchRecommendedPerfumes = () => {
-    axios.get(`/list?keywords=${selectedKeywords.join(',')}`)
-      .then((response) => {
-        setRecommendedPerfumes(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching recommended perfumes:', error);
-      });
   };
 
 
@@ -102,26 +90,7 @@ const Home = () => {
   );
 })}
       </div>
-      <div>
-      </div>
-          <div>
-        {/* 키워드 선택 UI */}
-        {keywords.map((keyword, index) => (
-          <button key={index} onClick={() => handleKeywordSelection(keyword)}>
-            {keyword}
-          </button>
-        ))}
-      </div>
       <button className={styles.aiBtn}>추천 향수 보기</button>
-      <div>
-        {/* 추천 향수 표시 */}
-        {recommendedPerfumes.map((perfume, index) => (
-            <div key={index}>
-              <p>{perfume.name}</p>
-              <p>{perfume.description}</p>
-            </div>
-          ))}
-        </div>
       </div>
         </div>
   );

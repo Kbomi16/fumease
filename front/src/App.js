@@ -18,11 +18,13 @@ import MyPage from './views/Mypage';
 import Scent from './views/scent/Scent';
 import About from './views/About';
 import Cart from './views/cart/Cart';
+import { AuthProvider } from './views/AuthContext';
 
 function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
       <CartProvider>
       <BrowserRouter>
         <Header />
@@ -39,7 +41,7 @@ function App() {
         <Footer />
       </BrowserRouter>
       </CartProvider>
-
+      </AuthProvider>
     </div>
   );
 }
