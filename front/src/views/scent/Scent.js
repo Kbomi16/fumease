@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import YouTube from 'react-youtube';
 import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
+const products = [
+  { id: 1, name: '향수 1', price: 50.99, imageUrl: 'url/to/product1.jpg' },
+  { id: 2, name: '향수 2', price: 65.99, imageUrl: 'url/to/product2.jpg' },
+  // Add more products
+];
 
 function App() {
   const navigate = useNavigate();
@@ -22,24 +26,6 @@ function App() {
       modestbranding: 1,
     },
   };
-
-
-  // 백엔드에서 가져온 제품 데이터를 저장할 상태
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    // 백엔드 서버에서 제품 데이터를 가져오는 요청
-    axios.get('http://localhost:3001/list').then((response) => {
-      const products = response.data
-      setProducts(products);
-    })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
-      });
-  }, []);
-
-
-
   // 담기 누르면 장바구니로 가기
   const [cart, setCart] = useState([]);
 
@@ -90,14 +76,12 @@ function App() {
 
       <Row className={styles['scents']}>
         {products.map((product) => (
-          <Col key={product.f_id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
+          <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
-                <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
-                <Card.Text className={styles['text']}>상품번호: {product.f_id}</Card.Text>
-
+                <Card.Title className={styles['title']}>{product.name}</Card.Title>
+                <Card.Text className={styles['text']}>${product.price.toFixed(2)}</Card.Text>
                 <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
               </Card.Body>
             </Card>

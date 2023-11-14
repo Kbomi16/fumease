@@ -1,5 +1,5 @@
 // App.js
-import { React } from 'react';
+import React from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -32,12 +32,12 @@ function App() {
           <Route path="/my" element={<MyPage />} />
           <Route path="/scent" element={<Scent />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="/detail" element={<Detail />} /> */}
           <Route path="/:f_id" element={<Detail />} />
 
         </Routes>
         <Footer />
       </BrowserRouter>
+
 
 
     </div>
