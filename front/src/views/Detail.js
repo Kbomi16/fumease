@@ -10,10 +10,11 @@ function App(props) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/detail/`)
+    axios.get(`http://localhost:3001/detail/${f_id}`)
       .then((response) => {
         const product = response.data;
         setProduct(product);
+
         console.log("data", response.data);
 
       })
@@ -28,40 +29,39 @@ function App(props) {
 
   return (
     <Container fluid className={styles.amain}>
-      {product.map((product) => (
 
-        <Stack gap={4}>
-          <Row>
-            <Col md={3} sm={12}>
-              <Image className={styles.aimg} src="logo/aesop_logo.png" alt="aesop" fluid />
-            </Col>
-            <Col md={5} sm={12}>
-              <Image className={styles.brandimg} src={`img/${product.image}`} alt={product.name} fluid />
-            </Col>
-            <Col md={3} sm={12}>
-              <div className={styles.brandcont}>
-                <h3 className={styles.name}>{product.f_name}</h3>
-                <p>
-                  {product.description}
-                </p>
-                <p className={styles.c}>사이즈</p>
-                <p>50ML</p>
-                <hr className={styles.jb} />
-                <h3 className={styles.price}>{product.f_price}</h3>
-                <div className="d-flex justify-content-center">
-                  <Button variant="outline-dark" className={styles.add}>장바구니 추가</Button>
-                </div>
-                <hr className={styles.jb} />
-                <p className={styles.c}>향</p>
-                <p>{product.f_scent}</p>
-                <hr className={styles.jb} />
-                <p className={styles.c}>노트</p>
-                <p>{product.f_note}</p>
+      <Stack gap={4}>
+        <Row>
+          <Col md={3} sm={12}>
+            <h3 className={styles.price}>{product.f_brand}</h3>
+          </Col>
+          <Col md={5} sm={12}>
+            <Image className={styles.brandimg} src={product.f_img} alt={product.name} fluid />
+          </Col>
+          <Col md={3} sm={12}>
+            <div className={styles.brandcont}>
+              <h3 className={styles.name}>{product.f_name}</h3>
+              <p>
+                {product.description}
+              </p>
+              <p className={styles.c}>사이즈</p>
+              <p>50ML</p>
+              <hr className={styles.jb} />
+              <h3 className={styles.price}>{product.f_price}</h3>
+              <div className="d-flex justify-content-center">
+                <Button variant="outline-dark" className={styles.add}>장바구니 추가</Button>
               </div>
-            </Col>
-          </Row>
-        </Stack>
-      ))}
+              <hr className={styles.jb} />
+              <p className={styles.c}>향</p>
+              <p>{product.f_scent}</p>
+              <hr className={styles.jb} />
+              <p className={styles.c}>노트</p>
+              <p>{product.f_note}</p>
+            </div>
+          </Col>
+        </Row>
+      </Stack>
+
     </Container>
   );
 }

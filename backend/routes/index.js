@@ -37,18 +37,31 @@ router.get("/keyword", async function (req, res) {
     console.error('Error fetching products:', error);
     res.status(500).send('Error fetching products');
   }
-});
+})
+// router.get("/detail", async function (req, res) {
+//   try {
+//     const products = await Perfume.findAll({
+//       attributes: ['f_id', 'f_name', 'f_price', 'f_scent', 'f_note', 'f_img', 'f_brand']
+//     });
+//     res.json(products);
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     res.status(500).send('Error fetching products');
+//   }
+// })
 
 router.get("/detail/:f_id", async function (req, res) {
   try {
-    const products = await Perfume.findAll({
-      attributes: ['f_id', 'f_name', 'f_price', 'f_scent', 'f_note']
+    const product = await Perfume.findOne({
+      attributes: ['f_id', 'f_name', 'f_price', 'f_scent', 'f_note', 'f_img', 'f_brand'],
+      where: { f_id: req.params.f_id }
     });
-    res.json(products);
+    res.json(product);
   } catch (error) {
     console.error('Error fetching products:', error);
     res.status(500).send('Error fetching products');
   }
 });
+
 
 module.exports = router;

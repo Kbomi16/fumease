@@ -33,7 +33,7 @@ function App() {
           <Route path="/scent" element={<Scent />} />
           <Route path="/about" element={<About />} />
           {/* <Route path="/detail" element={<Detail />} /> */}
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/:f_id" element={<Detail />} />
 
         </Routes>
         <Footer />

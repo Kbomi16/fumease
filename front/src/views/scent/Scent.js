@@ -96,6 +96,8 @@ function App() {
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
                 <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
+                <Card.Text className={styles['text']}>상품번호: {product.f_id}</Card.Text>
+
                 <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
               </Card.Body>
             </Card>
