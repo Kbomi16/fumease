@@ -39,10 +39,10 @@ router.get("/keyword", async function (req, res) {
   }
 });
 
-router.get("/detail", async function (req, res) {
+router.get("/detail/:f_id", async function (req, res) {
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_name', 'f_price', 'f_scent', 'f_note']
+      attributes: ['f_id', 'f_name', 'f_price', 'f_scent', 'f_note']
     });
     res.json(products);
   } catch (error) {
