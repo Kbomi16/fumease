@@ -38,16 +38,6 @@ useEffect(() => {
     });
 }, []);
 
-
-
-  // 담기 누르면 장바구니로 가기
-  const [cart, setCart] = useState([]);
-
-  const handleAddToCart = (product) => {
-    setCart([...cart, product]);
-    navigate('/cart');
-  };
-
   return (
     <Container className={styles['container']}>
       <YouTube videoId={videoId} opts={opts} />
@@ -96,7 +86,7 @@ useEffect(() => {
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
                 <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
-                <Button variant="primary" className={styles.btn} onClick={() => handleAddToCart(product)}>담기</Button>
+                <Button variant="primary" className={styles.btn}>MORE</Button>
               </Card.Body>
             </Card>
           </Col>

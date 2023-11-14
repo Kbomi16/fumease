@@ -35,6 +35,16 @@ function Header() {
       navigate('/login');
     }
   };
+  const handleCartClick = () => {
+    if (loggedIn) {
+    // 로그인 되어 있으면 Cart 페이지로 이동
+    navigate('/cart');
+    } else {
+      // 로그인 되어 있지 않으면 로그인 알림창 표시
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
+  };
 
   return (
     <header className={`${styles.header} ${isMainPage && scrollPosition === 0 ? '' : styles.scrolled}`}>
@@ -51,7 +61,7 @@ function Header() {
           <li className={styles.my} onClick={handleMyClick}>MY</li>
 
           {!loggedIn && <li className={styles.logins}><Link to="/login">LOGIN</Link></li>}
-          <Link to="/cart"><img className={styles.shoppingbag} src="shoppingbag.png" alt="쇼핑백" /></Link>
+          <img className={styles.shoppingbag} src="shoppingbag.png" alt="쇼핑백" onClick={handleCartClick} />
         </ul>
       </nav>
     </header>

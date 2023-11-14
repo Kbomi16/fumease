@@ -47,7 +47,6 @@ router.post('/signup', async (req, res) => {
       birthdate: req.body.birthdate,
       agreeTerms: req.body.agreeTerms,
       agreePrivacyPolicy: req.body.agreePrivacyPolicy,
-      // 나머지 필드들
     });
 
     res.status(200).json(newUser);

@@ -85,8 +85,9 @@ nav a {
 }
 
 .shoppingbag {
-  width: 45%;
-  padding: 5% 0% 0% 0%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .my {

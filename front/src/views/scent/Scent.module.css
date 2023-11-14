@@ -67,13 +67,15 @@ p {
 }
 
 .btn {
-  background-color: #000;
+  background-color: #fff;
+  color: #000;
+  border: #000 solid 0.5px;
   border-radius: 0;
   width: 100%;
   margin-top: 1rem;
   font-family: 'AppleSDGothicNeoB';
 }
-.btn:hover, .btn:focus {
+.btn:hover {
   cursor: pointer;
   background-color: #000 !important;
   color: #fff;
