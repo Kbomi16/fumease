@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 router.get("/list", async function (req, res) {
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_id', 'f_name', 'f_price']
+      attributes: ['f_id', 'f_name', 'f_price', 'f_img']
     });
     res.json(products);
   } catch (error) {

@@ -7,8 +7,13 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  // 장바구니에서 제품 재거
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(product => product.f_id !== productId));
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider value={{ cart, setCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -1,13 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CartContext } from '../views/cart/CartContext';
 import styles from './Detail.module.css';
 
 function App(props) {
+  const navigate = useNavigate();
+  
   const { f_id } = useParams();
   const [product, setProduct] = useState(null);
+
+  const { cart, setCart } = useContext(CartContext); // CartContext 불러오기
+
+  const handleAddToCart = () => { // 장바구니 추가 핸들러
+    setCart([...cart, product]);
+
+    const goToCart = window.confirm('장바구니에 추가되었습니다! 장바구니 페이지로 이동하시겠습니까?');
+    if (goToCart) {
+      navigate('/cart')
+    }
+  };
 
   useEffect(() => {
     axios.get(`http://localhost:3001/detail/${f_id}`)
@@ -49,7 +63,7 @@ function App(props) {
               <hr className={styles.jb} />
               <h3 className={styles.price}>{product.f_price}</h3>
               <div className="d-flex justify-content-center">
-                <Button variant="outline-dark" className={styles.add}>장바구니 추가</Button>
+                <Button variant="outline-dark" className={styles.add} onClick={handleAddToCart}>장바구니 추가</Button>
               </div>
               <hr className={styles.jb} />
               <p className={styles.c}>향</p>

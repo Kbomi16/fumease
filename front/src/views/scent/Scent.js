@@ -37,16 +37,6 @@ useEffect(() => {
     });
 }, []);
 
-
-
-  // 담기 누르면 장바구니로 가기
-  const [cart, setCart] = useState([]);
-
-  const handleAddToCart = (product) => {
-    setCart([...cart, product]);
-    navigate('/cart');
-  };
-
   return (
     <Container className={styles['container']}>
       <YouTube videoId={videoId} opts={opts} />
@@ -91,11 +81,11 @@ useEffect(() => {
       {products.map((product) => (
           <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
-              <Card.Img variant="top" src={product.imageUrl} />
+              <Card.Img variant="top" src={product.f_img} />
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
                 <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
-                <Button variant="primary" className={styles.btn}>MORE</Button>
+                <Button variant="primary" className={styles.btn} onClick={() => navigate(`/${product.f_id}`)}>MORE</Button>
               </Card.Body>
             </Card>
           </Col>

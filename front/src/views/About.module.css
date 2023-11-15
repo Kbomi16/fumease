@@ -1,3 +1,6 @@
+* {
+    font-family: 'AppleSDGothicNeoB';
+}
 .amain{
     margin-top: 83.8px;
 }
@@ -62,6 +65,7 @@
 
 .perfumename {
     text-align: center;
+    margin-bottom: 2rem;
 }
 .perfumeimg,
 .noteimg,
