@@ -18,6 +18,9 @@ function init(Sequelize, connection) {
         },
         f_keyword: {
             type: Sequelize.STRING
+        },
+        f_img: {
+            type: Sequelize.STRING
         }
     }, {
         tableName: "f_list",
@@ -60,7 +63,7 @@ function init(Sequelize, connection) {
         updatedAt: false,
     });
 
-    
+
     connection.sync({
         alert: true
     })

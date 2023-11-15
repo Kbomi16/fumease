@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 router.get("/list", async function (req, res) {
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_id', 'f_name', 'f_price', 'f_img']
+      attributes: ['f_id', 'f_name', 'f_price', 'f_img', 'f_brand']
     });
     res.json(products);
   } catch (error) {
@@ -30,7 +30,7 @@ router.get("/recommand", async function (req, res) {
 router.get("/keyword", async function (req, res) {
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_id','f_keyword']
+      attributes: ['f_id', 'f_keyword']
     });
     res.json(products);
   } catch (error) {

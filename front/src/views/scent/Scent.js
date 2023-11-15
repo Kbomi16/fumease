@@ -23,19 +23,19 @@ function App() {
   };
 
 
-// 백엔드에서 가져온 제품 데이터를 저장할 상태
-const [products, setProducts] = useState([]);
+  // 백엔드에서 가져온 제품 데이터를 저장할 상태
+  const [products, setProducts] = useState([]);
 
-useEffect(() => {
-  // 백엔드 서버에서 제품 데이터를 가져오는 요청
-  axios.get('http://localhost:3001/list').then((response) => {
+  useEffect(() => {
+    // 백엔드 서버에서 제품 데이터를 가져오는 요청
+    axios.get('http://localhost:3001/list').then((response) => {
       const products = response.data
       setProducts(products);
     })
-    .catch((error) => {
-      console.error('Error fetching products:', error);
-    });
-}, []);
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
 
   return (
     <Container className={styles['container']}>
@@ -85,6 +85,7 @@ useEffect(() => {
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
                 <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
+                <Card.Text className={styles['text']}>{product.f_brand}</Card.Text>
                 <Button variant="primary" className={styles.btn} onClick={() => navigate(`/${product.f_id}`)}>MORE</Button>
               </Card.Body>
             </Card>
