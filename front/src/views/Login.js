@@ -1,15 +1,34 @@
-// Login.js
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Login.module.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate  } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from './AuthContext';
+
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { setLoggedIn, setUserInfo } = useContext(AuthContext);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     // 로그인 로직 처리
+    try {
+      const response = await axios.post('http://localhost:3001/users/login', {
+        username,
+        password,
+      });
+      console.log(response.data);
+      setLoggedIn(true); // 로그인 상태를 true로 변경
+      setUserInfo(response.data.user); // 로그인한 사용자 정보를 저장
+      navigate('/'); // 로그인 성공 후 메인 페이지로 이동
+    } catch (error) {
+      console.log('Error logging in', error);
+    }
   };
   
   const gotoSignup = () => {
@@ -24,12 +43,14 @@ const Login = () => {
           <Form onSubmit={handleLogin}>
             <Form.Group controlId="formUsername">
               <Form.Label className={styles.label}>아이디</Form.Label>
-              <Form.Control className={styles.input} type="text" placeholder="아이디를 입력해주세요." />
+              <Form.Control className={styles.input} type="text" placeholder="아이디를 입력해주세요." 
+              value={username} onChange={(e) => setUsername(e.target.value)}/>
             </Form.Group>
 
             <Form.Group controlId="formPassword">
               <Form.Label className={styles.label}>비밀번호</Form.Label>
-              <Form.Control className={styles.input} type="password" placeholder="비밀번호를 입력해주세요." />
+              <Form.Control className={styles.input} type="password" placeholder="비밀번호를 입력해주세요." 
+              value={password} onChange={(e) => setPassword(e.target.value)}/>
             </Form.Group>
 
             <Button variant="primary" type="submit" className={styles.btn}>

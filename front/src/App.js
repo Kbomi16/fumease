@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "../src/fonts/Fonts.css"
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import 'normalize.css';
+import { CartProvider } from './views/cart/CartContext';
+
 
 import Home from './views/Home'
 import Header from './components/Layout/Header';
@@ -18,11 +20,15 @@ import About from './views/About';
 import Detail from './views/Detail';
 
 
+import Cart from './views/cart/Cart';
+import { AuthProvider } from './views/AuthContext';
 
 function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
+      <CartProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -33,6 +39,7 @@ function App() {
           <Route path="/scent" element={<Scent />} />
           <Route path="/about" element={<About />} />
           <Route path="/:f_id" element={<Detail />} />
+          <Route path="/cart" element={<Cart />} />
 
         </Routes>
         <Footer />
@@ -40,6 +47,8 @@ function App() {
 
 
 
+      </CartProvider>
+      </AuthProvider>
     </div>
   );
 }

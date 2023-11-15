@@ -30,7 +30,7 @@ router.get("/recommand", async function (req, res) {
 router.get("/keyword", async function (req, res) {
   try {
     const products = await Perfume.findAll({
-      attributes: ['f_keyword']
+      attributes: ['f_id','f_keyword']
     });
     res.json(products);
   } catch (error) {

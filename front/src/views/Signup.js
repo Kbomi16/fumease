@@ -2,9 +2,13 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { Container, Form, FormCheck, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
+    user_id: '',
+    id: '',
     username: '',
     password: '',
     confirmPassword: '',
@@ -14,6 +18,8 @@ const Signup = () => {
     agreeTerms: false,
     agreePrivacyPolicy: false,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,11 +33,19 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 여기에 회원가입 로직을 추가합니다.
-    console.log('회원가입 폼이 제출되었습니다:', formData);
-    // 실제로는 API 호출 또는 다른 회원가입 로직을 수행해야 합니다.
+
+    try {
+      //회원가입 API 호출
+      const response = await axios.post('http://localhost:3001/users/signup', formData)
+      //서버로부터 응답 확인
+      console.log(response.data)
+      // 회원가입 성공 후 로그인 페이지로 이동
+      navigate('/login');
+    } catch {
+      console.log('Error submitting signup form')
+    }
   };
 
 
@@ -43,9 +57,9 @@ const Signup = () => {
               <Form.Label className={styles.label}>아이디</Form.Label>
               <Form.Control className={styles.input}
                 type="text"
-                name="username"
+                name="id"
                 placeholder="아이디를 입력하세요."
-                value={formData.username}
+                value={formData.id}
                 onChange={handleChange}
               />
             </Form.Group>

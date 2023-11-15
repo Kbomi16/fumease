@@ -23,7 +23,42 @@ function init(Sequelize, connection) {
         tableName: "f_list",
         createdAt: false,
         updatedAt: false,
-    })
+    });
+
+    global.Users = connection.define("Users", {
+        user_id: {
+            type: Sequelize.STRING,
+            primaryKey: true
+        },
+        id: {
+            type: Sequelize.STRING
+        },
+        username: {
+            type: Sequelize.STRING
+        },
+        password: {
+            type: Sequelize.STRING
+        },
+        gender: {
+            type: Sequelize.STRING
+        },
+        phoneNumber: {
+            type: Sequelize.STRING
+        },
+        birthdate: {
+            type: Sequelize.DATE
+        },
+        agreeTerms: {
+            type: Sequelize.BOOLEAN
+        },
+        agreePrivacyPolicy: {
+            type: Sequelize.BOOLEAN
+        },
+    }, {
+        tableName: "users",
+        createdAt: false,
+        updatedAt: false,
+    });
 
     
     connection.sync({
