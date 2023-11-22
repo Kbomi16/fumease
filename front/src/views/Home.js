@@ -86,7 +86,6 @@ const Home = () => {
         );
         const recommendedPerfumes = response.data;
         setRecommendedPerfumes(recommendedPerfumes); // 추천 결과 저장
-        handleShowModal(); // 모달 창 표시
       } catch (error) {
         console.error("향수 가져오지 못함");
       }
@@ -172,12 +171,8 @@ const Home = () => {
           추천 향수 보기
         </button>
 
-        {showModal && (
-          <div className={styles.modal}>
-            <h1>추천 향수</h1>
-            <PerfumeList recommendedPerfumes={recommendedPerfumes} />
-            <button onClick={handleCloseModal}>닫기</button>
-          </div>
+        {recommendedPerfumes.length > 0 && (
+          <PerfumeList recommendedPerfumes={recommendedPerfumes} />
         )}
       </div>
     </div>
