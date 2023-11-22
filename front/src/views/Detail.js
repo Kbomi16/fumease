@@ -8,7 +8,7 @@ import styles from './Detail.module.css';
 
 function App(props) {
   const navigate = useNavigate();
-  
+
   const { f_id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -61,7 +61,7 @@ function App(props) {
               <p className={styles.c}>사이즈</p>
               <p>50ML</p>
               <hr className={styles.jb} />
-              <h3 className={styles.price}>{product.f_price}</h3>
+              <h3 className={styles.price}>{product.f_price}원</h3>
               <div className="d-flex justify-content-center">
                 <Button variant="outline-dark" className={styles.add} onClick={handleAddToCart}>장바구니 추가</Button>
               </div>
