@@ -63,7 +63,7 @@ function App() {
         <div className="p-4">
           <h3 className={styles.perfumename}>PERFUME</h3>
           <img className={styles.perfumeimg} src="img/perfume_represent.png" alt="perfumeimg" />
-          <p>향수 중 가장 진한 계열으로,
+          <p className={styles.cont}>향수 중 가장 진한 계열으로,
             향 첨가율이 15~30%이며 최대 12시간까지 지속됩니다.<br></br>
             농도가 높고 향이 진하기 때문에 소량만으로도 강한 향을 풍깁니다. <br></br>
             향수 입문자 보다는 좋아하는 향이 뚜렷한 사람에게 추천합니다.</p>

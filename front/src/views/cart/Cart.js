@@ -1,3 +1,5 @@
+// Cart.js
+
 import React, { useContext, useState } from 'react';
 import { Container, Card, Button, Row, Col, Modal, Form } from 'react-bootstrap';
 import { CartContext } from './CartContext';
@@ -8,13 +10,12 @@ import styles from './Cart.module.css';
 
 function Cart() {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-
   const [show, setShow] = useState(false);
-  const [orderConfirmed, setOrderConfirmed] = useState(false); // 새로운 상태 변수
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   const handleClose = () => {
     setShow(false);
-    setOrderConfirmed(false); // 주문 확인 상태를 초기화합니다.
+    setOrderConfirmed(false);
   };
 
   const handleShow = () => setShow(true);
@@ -26,7 +27,7 @@ function Cart() {
 
   return (
     <Container className={styles['container']}>
-      <h1>Cart</h1>
+      <h1>장바구니</h1>
       {cart.length === 0 ? (
         <p>장바구니가 비어있습니다.</p>
       ) : (
@@ -52,6 +53,7 @@ function Cart() {
                     >
                       삭제하기
                     </Button>
+
                   </Col>
                 </Row>
               </Card.Body>
@@ -60,6 +62,19 @@ function Cart() {
           <Button variant="primary" onClick={handleShow} className={styles.btn1}>
             주문하기
           </Button>
+          {orderConfirmed && (
+            <Modal show={orderConfirmed} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>주문 완료</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>주문이 완료되었습니다!</Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                  확인
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          )}
         </>
       )}
 
@@ -76,7 +91,7 @@ function Cart() {
               resetForm();
               handleClose();
               clearCart();
-              setOrderConfirmed(true); // 주문 확인 상태를 true로 설정합니다.
+              setOrderConfirmed(true);
             }}
           >
             {({
@@ -140,7 +155,6 @@ function Cart() {
           </Formik>
         </Modal.Body>
       </Modal>
-
     </Container>
   );
 }
