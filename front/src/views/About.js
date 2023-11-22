@@ -2,28 +2,44 @@ import { Button } from 'react-bootstrap';
 import React from 'react';
 import Stack from 'react-bootstrap/Stack';
 import styles from './About.module.css';
+import { useSpring, animated } from 'react-spring';
 
 function App() {
+
+  const [animation, setAnimation] = useSpring(() => ({
+    from: { opacity: 0, transform: 'translateX(-100%)' },
+    to: { opacity: 1, transform: 'translateX(0%)' },
+    config: { duration: 1000 }, // duration 값 조절
+
+  }));
+
+  const [imageAnimation, setImageAnimation] = useSpring(() => ({
+    from: { opacity: 0, transform: 'translateX(100%)' },
+    to: { opacity: 1, transform: 'translateX(0%)' },
+    config: { duration: 1000 },
+  }));
+
 
   return (
     <div className={styles.amain}>
       <Stack gap={8}>
         <div className={styles.asection}>
-
           <div>
-            <div className={styles.acont}>
+            <animated.div style={animation} className={styles.acont}>
               <h1 className={styles.atitle}>ABOUT PERFUME</h1>
               <div>
-                <h1 className={styles.mtitle}>Much More
-                </h1>
-                <h1 className={styles.mtitle}>Than Perfume
-                </h1>
-                <Button className={styles.btn1} variant="outline-light">GO SHOP</Button>
-                <Button variant="outline-light">Recommend AI</Button></div>
-            </div>
-            <div>
+                <h1 className={styles.mtitle}>Much More</h1>
+                <h1 className={styles.mtitle}>Than Perfume</h1>
+                <Button className={styles.btn1} variant="outline-light">
+                  GO SHOP
+                </Button>
+                <Button variant="outline-light">Recommend AI</Button>
+              </div>
+            </animated.div>
+
+            <animated.div style={imageAnimation}>
               <img className={styles.aboutimg} src="img/about_perfume.png" alt="aboutimg" />
-            </div>
+            </animated.div>
           </div>
         </div>
         <div className="p-2">
