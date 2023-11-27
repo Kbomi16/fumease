@@ -19,7 +19,6 @@ import Scent from './views/scent/Scent';
 import About from './views/About';
 import Detail from './views/Detail';
 
-
 import Cart from './views/cart/Cart';
 import { AuthProvider } from './views/AuthContext';
 import OrderComplete from './views/OrderComplete';
@@ -42,7 +41,6 @@ function App() {
               <Route path="/:f_id" element={<Detail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/order-complete" element={<OrderComplete />} />
-
             </Routes>
             <Footer />
           </BrowserRouter>

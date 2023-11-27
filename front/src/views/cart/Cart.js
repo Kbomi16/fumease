@@ -23,6 +23,7 @@ function Cart() {
     setOrderConfirmed(false); // 여기서 false로 설정
   };
 
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('이름을 입력해주세요'),
     address: Yup.string().required('주소를 입력해주세요'),
