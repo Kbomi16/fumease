@@ -1,9 +1,12 @@
 {
   "dependencies": {
+    "@tosspayments/payment-widget-sdk": "^0.10.0",
     "axios": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "react-modal": "^3.16.1"
+    "formik": "^2.4.5",
+    "react-router-dom": "^6.18.0",
+    "yup": "^1.3.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

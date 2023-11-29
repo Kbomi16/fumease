@@ -8,19 +8,38 @@ import styles from './Detail.module.css';
 
 function App(props) {
   const navigate = useNavigate();
-  
+
   const { f_id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // 수량을 나타내는 상태 추가
 
   const { cart, setCart } = useContext(CartContext); // CartContext 불러오기
 
-  const handleAddToCart = () => { // 장바구니 추가 핸들러
-    setCart([...cart, product]);
+  const handleAddToCart = () => {
+    const existingCartItemIndex = cart.findIndex(item => item.f_id === product.f_id);
+
+    if (existingCartItemIndex !== -1) {
+      // 상품이 이미 장바구니에 있는 경우 수량만 업데이트
+      const updatedCart = cart.map((item, index) =>
+        index === existingCartItemIndex ? { ...item, quantity: item.quantity + quantity } : item
+      );
+      setCart(updatedCart);
+    } else {
+      // 장바구니에 새로운 상품 추가
+      const cartItem = { ...product, quantity };
+      setCart([...cart, cartItem]);
+    }
 
     const goToCart = window.confirm('장바구니에 추가되었습니다! 장바구니 페이지로 이동하시겠습니까?');
     if (goToCart) {
       navigate('/cart')
     }
+  };
+
+  const handleQuantityChange = (newQuantity) => {
+    // 수량이 0보다 작아지지 않도록
+    const updatedQuantity = Math.max(1, newQuantity);
+    setQuantity(updatedQuantity);
   };
 
   useEffect(() => {
@@ -40,6 +59,8 @@ function App(props) {
   if (!product) {
     return <div>Loading...</div>;
   }
+  // 수량이 변할 때마다 가격을 계산하여 업데이트
+  const updatedPrice = product.f_price * quantity;
 
   return (
     <Container fluid className={styles.amain}>
@@ -61,7 +82,15 @@ function App(props) {
               <p className={styles.c}>사이즈</p>
               <p>50ML</p>
               <hr className={styles.jb} />
-              <h3 className={styles.price}>{product.f_price}</h3>
+              <h3 className={styles.price}>{updatedPrice.toLocaleString()}원</h3>
+              {/* 수량 조절 부분 */}
+              <p className={styles.c}>수량</p>
+              <div className="d-flex justify-content-center">
+                <Button variant="outline-dark" onClick={() => handleQuantityChange(quantity - 1)}>-</Button>
+                <span className={styles.quantity}>{quantity}</span>
+                <Button variant="outline-dark" onClick={() => handleQuantityChange(quantity + 1)}>+</Button>
+              </div>
+
               <div className="d-flex justify-content-center">
                 <Button variant="outline-dark" className={styles.add} onClick={handleAddToCart}>장바구니 추가</Button>
               </div>

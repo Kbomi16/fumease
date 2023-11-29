@@ -108,9 +108,9 @@ const Home = () => {
   };
 
   const handleReset = () => {
-    setIsModalOpen(false); // 모달을 닫습니다.
-    setSelectedKeywords([]); // 선택된 키워드를 초기화합니다.
-    setRecommendedPerfumes([]); // 추천된 향수 목록을 초기화합니다.
+    setIsModalOpen(false); // 모달 닫기
+    setSelectedKeywords([]); // 선택된 키워드 초기화
+    setRecommendedPerfumes([]); // 추천된 향수 목록 초기화
   };
 
   const PerfumeList = ({ recommendedPerfumes }) => {
@@ -207,26 +207,22 @@ const Home = () => {
                   ? { backgroundColor: keyword }
                   : {};
 
-                // hex값이 검정색인 경우 글자 색을 흰색으로 설정
-                if (isHexColor && keyword === "#000000") {
-                  buttonStyle.color = "white";
-                }
-
                 // 선택된 키워드인 경우 배경색과 글자색 변경
                 if (selectedKeywords.includes(keyword)) {
                   buttonStyle.backgroundColor = "black";
                   buttonStyle.color = "white";
                 }
                 return (
-                  <button
-                    key={index}
-                    id={keyword}
-                    className={styles.keyword}
-                    style={buttonStyle}
-                    onClick={() => handleKeywordClick(keyword)}
-                  >
-                    {keyword}
-                  </button>
+                  <button key={index} className={styles.keyword} onClick={() => handleKeywordClick(keyword)}>
+                {isHexColor ? (
+                  <>
+                    <div className={styles.colorCircle} style={buttonStyle}></div>
+                    <span className={styles.keywordText}>{keyword}</span>
+                  </>
+                ) : (
+                  <span className={styles.keywordText}>{keyword}</span>
+                )}
+              </button>
                 );
               })}
               {/* 알림 메시지 출력 */}

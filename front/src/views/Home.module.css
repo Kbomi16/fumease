@@ -8,6 +8,14 @@
   align-items: center;
   }
 
+.colorCircle {
+    width: 18px; 
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 5px;
+
+  }
+  
   .left-section,
   .right-section {
     width: 100%;
@@ -54,11 +62,16 @@
   text-align: center;
   margin: 5rem;
 }
+
 .keyword-buttons {
+  
   font-family: 'AppleSDGothicNeoL';
   padding: 3rem;
 }
 .keyword {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   border-radius: 10rem;
   padding: 0.5rem 1rem;
   font-size: 18px;
@@ -66,6 +79,7 @@
   background-color: #fff;
   margin: 0.5rem;
 }
+
 .aiBtn {
   border-radius: 10rem;
   color: #000;
