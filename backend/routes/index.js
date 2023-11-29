@@ -72,7 +72,7 @@ router.get("/chatgpt", async function (req, res) {
     // 사용자가 선택한 키워드들을 요청 쿼리에서 가져온다.
     const { selectedKeywords } = req.query;
     const openai = new OpenAI({
-      apiKey: "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",
+      apiKey: "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",
     });
 
     // 스레드를 통해 사용자와의 대화를 관리.
