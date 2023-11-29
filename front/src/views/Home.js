@@ -1,6 +1,6 @@
 // Home.js
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css"; // styles를 import
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -19,6 +19,7 @@ const Home = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  
   // 키워드 가져오기
   const [keywords, setKeywords] = useState([]);
 
@@ -56,6 +57,7 @@ const Home = () => {
   // 알림 메시지를 위한 상태 추가
   const [alertMessage, setAlertMessage] = useState("");
 
+  
   const handleKeywordClick = (keyword) => {
     // 이미 선택된 키워드인지 확인
     if (selectedKeywords.includes(keyword)) {
@@ -113,6 +115,41 @@ const Home = () => {
     setRecommendedPerfumes([]); // 추천된 향수 목록 초기화
   };
 
+  // 로딩 메시지 상태 추가
+  const [loadingMessage, setLoadingMessage] = useState(""); 
+
+  useEffect(() => {
+    let intervalId;
+    if (isLoading) {
+      let count = 0;
+      const messages = [
+        "퓨미즈 AI가 선택 키워드를 기반으로 향수를 추천 중이에요!",
+        "향수에 대해 잘 아시나요?",
+        "향수의 향에 대해 이야기할 때탑, 미들, 베이스 노트 라는 용어를 사용합니다.",
+        "노트는 시간에 따른 향의 변화를 말합니다.",
+        "탑노트는 뿌리고 15분 전후로 나는 향",
+        "미들노트는 30분~1시간 전후로 나는 향",
+        "베이스노트는 2~3시간 전후로 나는 향",
+        "탑노트와 베이스노트의 향은 크게 차이날 수 있으므로 충분한 시향이 필요합니다.",
+        "더 자세한 정보는 ABOUT 페이지에서 보실 수 있어요.",
+        "즐거운 쇼핑 되시길:)"
+      ];
+      setLoadingMessage(messages[0]);
+      intervalId = setInterval(() => {
+        count++;
+        setLoadingMessage(messages[count % messages.length]);
+      }, 2000);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [isLoading]);
+
+
+  const navigate = useNavigate();
+
+
   const PerfumeList = ({ recommendedPerfumes }) => {
     return (
       <Modal
@@ -141,7 +178,7 @@ const Home = () => {
                   <Button
                     variant="primary"
                     className={styles.btn}
-                    onClick={() => Navigate(`/${perfume.f_id}`)}
+                    onClick={() => navigate(`/${perfume.f_id}`)}
                   >
                     MORE
                   </Button>
@@ -191,10 +228,7 @@ const Home = () => {
         <h1>TODAY PERFUME</h1>
 
         {isLoading ? (
-          <p>
-            퓨미즈 AI가 선택 키워드를 기반으로 향수를 추천 중이에요! 조금만
-            기다려주세요...
-          </p>
+          <p>{loadingMessage}</p>
         ) : (
           <div>
             <p>오늘의 날씨와 기분에 따라 원하는 키워드 3가지를 선택해보세요.</p>
@@ -207,16 +241,21 @@ const Home = () => {
                   ? { backgroundColor: keyword }
                   : {};
 
-                // 선택된 키워드인 경우 배경색과 글자색 변경
-                if (selectedKeywords.includes(keyword)) {
-                  buttonStyle.backgroundColor = "black";
-                  buttonStyle.color = "white";
-                }
+                // // 선택된 키워드인 경우 배경색과 글자색 변경
+                // if (selectedKeywords.includes(keyword)) {
+                //   buttonStyle.backgroundColor = "black";
+                //   buttonStyle.color = "white";
+                // }
                 return (
                   <button
                     key={index}
                     className={styles.keyword}
                     onClick={() => handleKeywordClick(keyword)}
+                    style={
+                      selectedKeywords.includes(keyword)
+                        ? { backgroundColor: 'black', color: 'white' }
+                        : null
+                    }
                   >
                     {isHexColor ? (
                       <>
