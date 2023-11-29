@@ -213,16 +213,23 @@ const Home = () => {
                   buttonStyle.color = "white";
                 }
                 return (
-                  <button key={index} className={styles.keyword} onClick={() => handleKeywordClick(keyword)}>
-                {isHexColor ? (
-                  <>
-                    <div className={styles.colorCircle} style={buttonStyle}></div>
-                    <span className={styles.keywordText}>{keyword}</span>
-                  </>
-                ) : (
-                  <span className={styles.keywordText}>{keyword}</span>
-                )}
-              </button>
+                  <button
+                    key={index}
+                    className={styles.keyword}
+                    onClick={() => handleKeywordClick(keyword)}
+                  >
+                    {isHexColor ? (
+                      <>
+                        <div
+                          className={styles.colorCircle}
+                          style={buttonStyle}
+                        ></div>
+                        <span className={styles.keywordText}>{keyword}</span>
+                      </>
+                    ) : (
+                      <span className={styles.keywordText}>{keyword}</span>
+                    )}
+                  </button>
                 );
               })}
               {/* 알림 메시지 출력 */}
