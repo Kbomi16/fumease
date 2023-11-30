@@ -63,6 +63,10 @@
     font-family: 'AppleSDGothicNeoB';
 
 }
-/* .add{
-    margin-left: 37%;
-} */
+.add{
+    margin-top: 15px;
+
+}
+.quantity{
+    padding:10px;
+}

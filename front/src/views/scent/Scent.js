@@ -6,6 +6,10 @@ import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+function formatPrice(price) {
+  return price.toLocaleString(); // 숫자를 천단위로 쉼표가 포함된 문자열로 변환
+}
+
 function App() {
   const navigate = useNavigate();
 
@@ -78,13 +82,13 @@ function App() {
       </div>
 
       <Row className={styles['scents']}>
-      {products.map((product) => (
+        {products.map((product) => (
           <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
             <Card>
               <Card.Img variant="top" src={product.f_img} />
               <Card.Body>
                 <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
-                <Card.Text className={styles['text']}>{product.f_price}원</Card.Text>
+                <Card.Text className={styles['text']}>{formatPrice(product.f_price)}원</Card.Text>
                 <Card.Text className={styles['text']}>{product.f_brand}</Card.Text>
                 <Button variant="primary" className={styles.btn} onClick={() => navigate(`/${product.f_id}`)}>MORE</Button>
               </Card.Body>

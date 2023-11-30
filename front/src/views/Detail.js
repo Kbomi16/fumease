@@ -84,7 +84,7 @@ function App(props) {
               <hr className={styles.jb} />
               <h3 className={styles.price}>{updatedPrice.toLocaleString()}원</h3>
               {/* 수량 조절 부분 */}
-              <p className={styles.c}>수량</p>
+              <p className={styles.d}>수량</p>
               <div className="d-flex justify-content-center">
                 <Button variant="outline-dark" onClick={() => handleQuantityChange(quantity - 1)}>-</Button>
                 <span className={styles.quantity}>{quantity}</span>
