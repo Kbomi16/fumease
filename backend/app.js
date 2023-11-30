@@ -37,6 +37,14 @@ var sessionStore = new MySQLStore({
 var init = require("./model.js");
 
 init(Sequelize, sequelize);
+app.use(cookieParser());
+app.use(session({
+  key: 'session_cookie_name',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,11 +53,16 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
 // CORS 설정
-app.use(cors());
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -69,5 +82,3 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
-
-
