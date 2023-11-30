@@ -5,6 +5,7 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
+
 router.get("/list", async function (req, res) {
   try {
     const products = await Perfume.findAll({
@@ -16,9 +17,11 @@ router.get("/list", async function (req, res) {
     res.status(500).send("Error fetching products");
   }
 });
+
 router.get("/scent", async function (req, res) {
   res.json([]);
 });
+
 router.get("/recommand", async function (req, res) {
   var list = await Perfume.findAll();
   let keywordList = [];
@@ -31,6 +34,7 @@ router.get("/recommand", async function (req, res) {
   });
   res.json(keywordList);
 });
+
 router.get("/keyword", async function (req, res) {
   try {
     const products = await Perfume.findAll({
@@ -65,14 +69,18 @@ router.get("/detail/:f_id", async function (req, res) {
 });
 
 // GPT
+require("dotenv").config();
+const apiKey = process.env.AI_API;
+
 const OpenAI = require("openai");
 
 router.get("/chatgpt", async function (req, res) {
   try {
     // 사용자가 선택한 키워드들을 요청 쿼리에서 가져온다.
     const { selectedKeywords } = req.query;
+    console.log("프론트에서 사용자가 선택한 키워드:", selectedKeywords);
     const openai = new OpenAI({
-      apiKey: "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",
+      apiKey: apiKey,
     });
 
     // 스레드를 통해 사용자와의 대화를 관리.
@@ -89,82 +97,87 @@ router.get("/chatgpt", async function (req, res) {
     console.log("create run", run);
 
     let check;
-    do {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      check = await openai.beta.threads.runs.retrieve(thread.id, run.id);
-    } while (check.status !== "completed");
 
-    const messages = await openai.beta.threads.messages.list(thread.id);
-    console.log("Messages:", messages);
-    console.log("First message content:", messages.data[0].content[0]);
+    async function requestGPT(){
+      do {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        check = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+      } while (check.status !== "completed");
+  
+      const messages = await openai.beta.threads.messages.list(thread.id);
+      console.log("Messages:", messages);
+      console.log("First message content:", messages.data[0].content[0]);
+
+      console.log("First message content:", messages.data[0].content[0]);
+
+      // OpenAI에서 받은 응답을 처리
+      const content = messages.data[0].content[0].text.value;
+
+      const list = textToArray(content);
+      return list
+    }
+   
 
     // GPT답변 텍스트를 줄 단위로 분리하고, 각 행을 배열로 반환함.
     function textToArray(text) {
       const lines = text.split("\n");
       const perfumes = [];
       let currentPerfume = {};
-
+    
       lines.forEach((line, index) => {
-        const [key, value] = line.split(" : ");
-
-        if (key !== undefined && value !== undefined) {
-          if (key.includes("향수 이름")) {
-            if (Object.keys(currentPerfume).length !== 0) {
-              if (currentPerfume["brand"]) {
-                currentPerfume["brand"] = currentPerfume["brand"]
-                  .replace(/\[.*?\]/g, "")
-                  .trim();
-              }
-              perfumes.push(currentPerfume);
-              currentPerfume = {};
-            }
-            currentPerfume["name"] = value.trim();
-          } else if (key.includes("향수 가격")) {
-            currentPerfume["price"] = value.trim();
-          } else if (key.includes("브랜드")) {
-            currentPerfume["brand"] = value;
+        if (line.includes("향수 이름")) {
+          if (Object.keys(currentPerfume).length !== 0) {
+            perfumes.push(currentPerfume);
+            currentPerfume = {};
           }
-        }
-
-        if (index === lines.length - 1 || index + 1 === lines.length) {
-          if (currentPerfume["brand"]) {
-            currentPerfume["brand"] = currentPerfume["brand"]
-              .replace(/\[.*?\]/g, "")
-              .trim();
-          }
-          perfumes.push(currentPerfume);
+          currentPerfume["name"] = line.split(": ")[1].trim();
+        } else if (line.includes("향수 가격")) {
+          currentPerfume["price"] = line.split(": ")[1].trim();
+        } else if (line.includes("브랜드")) {
+          currentPerfume["brand"] = line.split(": ")[1].trim();
         }
       });
+    
+      // 마지막 향수 정보를 배열에 추가
+      if (Object.keys(currentPerfume).length !== 0) {
+        perfumes.push(currentPerfume);
+      }
+
+    
       return perfumes;
     }
-    console.log("First message content:", messages.data[0].content[0]);
+    var list=[];
+    var perfumes=[]
+    do{
+      list=await requestGPT()
+      const perfumeNames = list.map((perfume) => perfume.name);
+      console.log("GPT 가 추천한 향수 개수"+list.length)
+      perfumes = await Promise.all(
+        perfumeNames.map((perfumeName) => {
+          if (perfumeName) {
+            return Perfume.findOne({
+              attributes: [
+                "f_id",
+                "f_name",
+                "f_price",
+                "f_img",
+                "f_brand",
+                "f_keyword",
+              ],
+              where: {
+                f_name: perfumeName,
+              },
+            });
+          }
+        })
+      );
+       
+    console.log("추출한 답변(향수 리스트): ", perfumes.length);
 
-    // OpenAI에서 받은 응답을 처리
-    const content = messages.data[0].content[0].text.value;
-    const list = textToArray(content);
-    // 수정된 부분: GPT 응답에서 추출한 향수 이름들
-    const perfumeNames = list.map((perfume) => perfume.name);
+    }while(!(perfumes.length>0)) //향수 한 개라도 나올때까지 계속 반복..
+  
 
-    // 이름을 기반으로 데이터베이스에서 향수 상세 정보 가져오기
-    const perfumes = await Promise.all(
-      perfumeNames.map((perfumeName) => {
-        if (perfumeName) {
-          return Perfume.findOne({
-            attributes: [
-              "f_id",
-              "f_name",
-              "f_price",
-              "f_img",
-              "f_brand",
-              "f_keyword",
-            ],
-            where: {
-              f_name: perfumeName,
-            },
-          });
-        }
-      })
-    );
+
     res.json(perfumes.filter((perfume) => perfume != null));
   } catch (error) {
     console.error("Error occurred:", error);
