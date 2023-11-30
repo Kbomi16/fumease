@@ -24,7 +24,7 @@ const Login = () => {
       });
       console.log(response.data);
       setLoggedIn(true); // 로그인 상태를 true로 변경
-      setUserInfo(response.data.user); // 로그인한 사용자 정보를 저장
+      setUserInfo(response.data); // 로그인한 사용자 정보를 저장
       navigate('/'); // 로그인 성공 후 메인 페이지로 이동
     } catch (error) {
       console.log('Error logging in', error);

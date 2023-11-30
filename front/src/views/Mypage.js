@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from './Mypage.module.css'
-
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const MyPage = () => {
-
   const { userInfo, logout } = useContext(AuthContext);
   console.log(userInfo);
   const navigate = useNavigate();
@@ -25,13 +23,15 @@ const MyPage = () => {
           <Card className={styles.card}>
             <Card.Body>
               <Card.Title className={styles['title']}>내 정보</Card.Title>
-              {userInfo && <Card.Text className={styles['text']}>
-                아이디: {userInfo?.id}<br />
-                이름: {userInfo?.username}<br />
-                성별: {userInfo?.gender}<br />
-                전화번호: {userInfo?.phoneNumber}<br />
-                생년월일: {userInfo?.birthdate}
-              </Card.Text>}
+              {userInfo && (
+                <Card.Text className={styles.text}>
+                  아이디: {userInfo.id}<br />
+                  이름: {userInfo.username}<br />
+                  성별: {userInfo.gender}<br />
+                  전화번호: {userInfo.phoneNumber}<br />
+                  생년월일: {userInfo.birthdate}
+                </Card.Text>
+              )}
               <Button variant="secondary" className={styles.btn} onClick={handleLogout}>로그아웃</Button>
             </Card.Body>
           </Card>
