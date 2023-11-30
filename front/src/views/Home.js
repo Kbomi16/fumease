@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css"; // styles를 import
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Card, Col, Row, Modal, Spinner } from "react-bootstrap";
+import { Button, Card, Col, Row, Modal } from "react-bootstrap";
 
 const Home = () => {
   // 모달 열기/닫기를 위한 상태
@@ -241,10 +241,7 @@ const Home = () => {
         {isLoading ? (
           <>
           <div className={styles["circle-spinner"]}>
-          <Spinner className={`${styles.spinner} spinner`} animation="grow" variant="primary" />
-          <Spinner className={`${styles.spinner} spinner`} animation="grow" variant="primary" />
-          <Spinner className={`${styles.spinner} spinner`} animation="grow" variant="primary" />
-          <Spinner className={`${styles.spinner} spinner`} animation="grow" variant="primary" />
+          <span className={styles.loader}></span>
           </div>
           
           <p>{loadingMessage}</p></>
