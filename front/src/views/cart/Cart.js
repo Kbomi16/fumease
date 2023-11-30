@@ -59,33 +59,33 @@ function Cart() {
 
   return (
     <Container className={styles['container']}>
-      <h1>장바구니</h1>
+      <h1 className={styles.shop}>장바구니</h1>
       {cart.length === 0 ? (
         <p>장바구니가 비어있습니다.</p>
       ) : (
         <>
-          <div className={styles.sel}>
-            <Row className={styles.selectAllRow}>
-              <Col md={11}>
-                <span>전체 선택</span>
-              </Col>
-              <Col md={1} className={styles['selectButton']}>
-                <Form.Check
-                  type="checkbox"
-                  id="checkbox-all"
-                  onChange={() => handleCheckboxChange('all')}
-                  checked={selectedProducts.length === cart.length}
-                />
-              </Col>
+          <div className={styles.selectAllRow}>
+            <div className={styles['selectButton']}>
+              <Form.Check
+                custom
+                type="checkbox"
+                id="checkbox-all"
+                onChange={() => handleCheckboxChange('all')}
+                checked={selectedProducts.length === cart.length}
 
-            </Row>
+              />
+              <span>전체 선택</span>
+
+            </div>
           </div>
+
           {cart.map((product) => (
             <Card key={product.f_id} className={styles['card']}>
               <Card.Body>
                 <Row className="align-items-center">
                   <Col md={1} className={styles['selectButton']}>
                     <Form.Check
+                      custom
                       type="checkbox"
                       id={`checkbox-${product.f_id}`}
                       onChange={() => handleCheckboxChange(product.f_id)}
@@ -98,10 +98,10 @@ function Cart() {
                   <Col md={3} className={styles['title']}>
                     {product.f_name}
                   </Col>
-                  <Col md={3} className={styles['text']}>
+                  <Col md={2} className={styles['text']}>
                     {formattedCurrency(product.f_price * product.quantity)}원
                   </Col>
-                  <Col md={1} className={styles.quantityControl}>
+                  <Col md={2} className={styles.quantityControl}>
                     <Button
                       variant="outline-dark"
                       onClick={() => updateCartItemQuantity(product.f_id, product.quantity - 1)}
