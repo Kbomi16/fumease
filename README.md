@@ -5,18 +5,8 @@
 - 키워드와 색을 선택해서 본인 취향에 맞는 향수를 추천해주는 ai를 만들기
 - 추천된 향수가 나오면 구매할 수 있는 향수 쇼핑몰 사이트
 - 향수는 세 노트로 나뉘는데 그것을 잘 모르는 사람들에게 정보를 제공
-- React
 
-https://react-bootstrap.netlify.app/docs/components/accordion
+- 프론트엔드 : React, React Bootstrap
+- 백엔드 : express, mySQL, nodeJS
 
-### 보미
-- 로그인, 회원가입 UI 작업
-- 메인페이지 UI 작업
-- 헤더, 푸터, 모든 페이지에 적용되게 함.
-- 모든 페이지 UI 조금씩 제작함.
-
-### 다영
-
-
-### 혜현
 
