@@ -28,22 +28,22 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/my" element={<MyPage />} />
-              <Route path="/scent" element={<Scent />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/:f_id" element={<Detail />} />
-              <Route path="/cart" element={<Cart />} />
+          <CartProvider>
+              <BrowserRouter>
+                <Header />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/my" element={<MyPage />} />
+                  <Route path="/scent" element={<Scent />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/:f_id" element={<Detail />} />
+                  <Route path="/cart" element={<Cart />} />
               <Route path="/order-complete" element={<OrderComplete />} />
-            </Routes>
-            <Footer />
-          </BrowserRouter>
+                </Routes>
+                <Footer />
+              </BrowserRouter>
 
 
 
