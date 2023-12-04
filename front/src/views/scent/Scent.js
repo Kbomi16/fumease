@@ -41,6 +41,38 @@ function App() {
       });
   }, []);
 
+  // 페이지네이션을 위한 변수들
+  const [page, setPage] = useState(1); // 현재 페이지
+  const [loading, setLoading] = useState(false); // 추가 데이터 로딩 여부
+
+  // 스크롤 이벤트 핸들러
+  const handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
+      // 스크롤이 페이지 하단에 도달하면 추가 데이터 로드
+      setLoading(true);
+      axios.get(`http://localhost:3001/list?page=${page + 1}`)
+        .then((response) => {
+          const newProducts = response.data;
+          setProducts([...products, ...newProducts]);
+          setPage(page + 1);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching more products:', error);
+          setLoading(false);
+        });
+    }
+  };
+
+  // 스크롤 이벤트 리스너 등록
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [page, loading]);
+
   return (
     <Container className={styles['container']}>
       <YouTube videoId={videoId} opts={opts} />

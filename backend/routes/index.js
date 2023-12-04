@@ -174,7 +174,8 @@ router.get("/chatgpt", async function (req, res) {
        
     console.log("추출한 답변(향수 리스트): ", perfumes.length);
 
-    }while(!(perfumes.length>0)) //향수 한 개라도 나올때까지 계속 반복..
+    }while(!(perfumes.length>0)) 
+    //향수 한 개라도 나올때까지 계속 반복..
   
 
 
