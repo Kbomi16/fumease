@@ -18,6 +18,7 @@ function Cart() {
     setShow(false);
     setOrderConfirmed(false);
     // 주문 확인 모달이 닫힐 때 선택한 상품 초기화
+
     setSelectedProducts(cart.map((product) => product.f_id));
   };
 

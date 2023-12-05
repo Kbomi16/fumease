@@ -82,10 +82,21 @@
 .showerimg{
     display: block;
     margin: 0px auto;
+
 }
 .perfumeimg{
     margin-top: -10%;
 
+}
+.noteimg{
+    width: 420px;
+
+}
+.edpimg,
+.edcimg,
+.edtimg,
+.showerimg{
+    width:380px;
 }
 .cont{
     font-size: 20px;
