@@ -25,53 +25,45 @@ function App() {
       modestbranding: 1,
     },
   };
-
+// 초기 페이지 번호와 한 페이지당 아이템 개수 설정
+const initialPage = 1;
+const itemsPerPage = 12;
 
   // 백엔드에서 가져온 제품 데이터를 저장할 상태
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // 백엔드 서버에서 제품 데이터를 가져오는 요청
-    axios.get('http://localhost:3001/list').then((response) => {
-      const products = response.data
-      setProducts(products);
-    })
+    // 백엔드 서버에서 초기 제품 데이터를 가져오는 요청 (페이지당 20개씩)
+    axios.get(`http://localhost:3001/list?page=${initialPage}&limit=${itemsPerPage}`)
+      .then((response) => {
+        const products = response.data
+        setProducts(products);
+      })
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
   }, []);
 
   // 페이지네이션을 위한 변수들
-  const [page, setPage] = useState(1); // 현재 페이지
+  const [page, setPage] = useState(initialPage); // 현재 페이지
   const [loading, setLoading] = useState(false); // 추가 데이터 로딩 여부
 
-  // 스크롤 이벤트 핸들러
-  const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
-      // 스크롤이 페이지 하단에 도달하면 추가 데이터 로드
-      setLoading(true);
-      axios.get(`http://localhost:3001/list?page=${page + 1}`)
-        .then((response) => {
-          const newProducts = response.data;
-          setProducts([...products, ...newProducts]);
-          setPage(page + 1);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error fetching more products:', error);
-          setLoading(false);
-        });
-    }
+  // '더 보기' 버튼 클릭 시 추가 제품을 가져오는 함수
+  const loadMoreProducts = () => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:3001/list?page=${page + 1}&limit=${itemsPerPage}`)
+      .then((response) => {
+        const newProducts = response.data;
+        setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+        setPage((prevPage) => prevPage + 1);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching more products:', error);
+        setLoading(false);
+      });
   };
-
-  // 스크롤 이벤트 리스너 등록
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [page, loading]);
 
   return (
     <Container className={styles['container']}>
@@ -128,6 +120,11 @@ function App() {
           </Col>
         ))}
       </Row>
+      <div className={styles.loadMoreButton}>
+        <Button variant="primary" onClick={loadMoreProducts} disabled={loading} className={styles.btn1}>
+          {loading ? '로딩 중...' : '더 보기'}
+        </Button>
+      </div>
     </Container>
   );
 }

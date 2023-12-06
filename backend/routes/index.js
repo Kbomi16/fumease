@@ -8,15 +8,25 @@ router.get("/", function (req, res, next) {
 
 router.get("/list", async function (req, res) {
   try {
+    const { page, limit } = req.query;
+    const pageNumber = parseInt(page) || 1;
+    const itemsPerPage = parseInt(limit) || 12;
+
+    const offset = (pageNumber - 1) * itemsPerPage;
+
     const products = await Perfume.findAll({
       attributes: ["f_id", "f_name", "f_price", "f_img", "f_brand"],
+      offset: offset,
+      limit: itemsPerPage,
     });
+
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).send("Error fetching products");
   }
 });
+
 
 router.get("/scent", async function (req, res) {
   res.json([]);
