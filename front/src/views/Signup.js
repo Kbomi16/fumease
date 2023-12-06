@@ -125,7 +125,7 @@ const Signup = () => {
             확인
           </Button></div>
           {!passwordMatch && (
-            <p style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</p>
+            <p style={{ color: "red" }} className={styles.p1}>비밀번호가 일치하지 않습니다.</p>
           )}
           
         </Form.Group>

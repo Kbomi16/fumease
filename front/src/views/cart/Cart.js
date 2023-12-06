@@ -61,7 +61,7 @@ function Cart() {
     <Container className={styles['container']}>
       <h1 className={styles.shop}>장바구니</h1>
       {cart.length === 0 ? (
-        <p>장바구니가 비어있습니다.</p>
+        <p className={styles.p2}>장바구니가 비어있습니다.</p>
       ) : (
         <>
           <div className={styles.selectAllRow}>
