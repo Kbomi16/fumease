@@ -4,8 +4,11 @@ h2 {
 .login {
   margin: 20rem;
 }
-p, .label {
+.label {
   font-family: 'AppleSDGothicNeoL';
+}
+p {
+  font-size: small;
 }
 .input {
   font-family: 'AppleSDGothicNeoL';
@@ -45,11 +48,34 @@ p, .label {
   width: 100%;
 }
 
-@media (min-width: 600px) {
-  .container {
-    padding: 10rem auto;
+@media (min-width: 500px) {
+  .container, .container1 {
+    padding: 15rem 0;
+  }
+  .signup-section {
+    margin-top: 5rem;
   }
 }
 .form {
   width: 80%;
+}
+.confirm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.btn1 {
+  background-color: #000;
+  border-radius: 0;
+  width: 5rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-family: 'AppleSDGothicNeoB';
+  border: none !important;
+}
+.btn1:hover, .btn1:focus {
+  cursor: pointer;
+  background-color: #000 !important;
+  color: #fff;
+  border: none !important;
 }

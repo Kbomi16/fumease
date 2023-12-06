@@ -28,6 +28,11 @@ const Login = () => {
       navigate('/'); // 로그인 성공 후 메인 페이지로 이동
     } catch (error) {
       console.log('Error logging in', error);
+      // 비밀번호가 틀렸을 때 에러로 인식되었다고 가정
+    if (error.response && error.response.status === 400) {
+      // 여기서 알림을 띄우는 작업을 수행할 수 있습니다
+      alert('비밀번호가 올바르지 않습니다. 다시 시도해주세요.');
+    }
     }
   };
 
