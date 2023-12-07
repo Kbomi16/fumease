@@ -4,7 +4,14 @@
 .amain{
     margin-top: 83.8px;
 }
-
+.link{
+    text-decoration: none;
+    color:white;
+}
+.link:hover {
+    color: black; /* 마우스를 올렸을 때 파란색으로 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+  }
 .asection{
     background: #000;
     height: 100%;

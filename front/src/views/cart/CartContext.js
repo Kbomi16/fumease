@@ -1,5 +1,5 @@
-// App 컴포넌트의 상태에서 cart를 전역 상태로 이동해야 한다. 
-// 이렇게 하면 장바구니 페이지에서도 cart 상태에 접근할 수 있다.
+// CartContext.js
+
 import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
@@ -7,13 +7,26 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // 장바구니에서 제품 재거
+
+  // 장바구니에서 제품 제거
   const removeFromCart = (productId) => {
     setCart(cart.filter(product => product.f_id !== productId));
   };
+  // //주문 완료 후 카트 비우기
+  // const clearCart = () => {
+  //   setCart([]);
+  // };
 
+  // 상품의 수량 업데이트
+  const updateCartItemQuantity = (productId, newQuantity) => {
+    setCart(cart.map(product =>
+      product.f_id === productId
+        ? { ...product, quantity: Math.max(1, newQuantity) }
+        : product
+    ));
+  };
   return (
-    <CartContext.Provider value={{ cart, setCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, setCart, removeFromCart, updateCartItemQuantity }}>
       {children}
     </CartContext.Provider>
   );

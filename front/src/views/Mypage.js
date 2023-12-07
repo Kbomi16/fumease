@@ -27,7 +27,6 @@ const MyPage = () => {
                 <Card.Text className={styles.text}>
                   아이디: {userInfo.id}<br />
                   이름: {userInfo.username}<br />
-                  성별: {userInfo.gender}<br />
                   전화번호: {userInfo.phoneNumber}<br />
                   생년월일: {userInfo.birthdate}
                 </Card.Text>
