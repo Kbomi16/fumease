@@ -1,12 +1,23 @@
 // CartContext.js
 
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState,useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  useEffect(()=>{
+    const cart = localStorage.getItem("cart");
+    console.log(cart)
+    if(cart){
+      try{
+        var cartJson=JSON.parse(cart)
+        setCart(cartJson)
+      }catch(err){}
+      
+    }
+  },[])
 
   // 장바구니에서 제품 제거
   const removeFromCart = (productId) => {

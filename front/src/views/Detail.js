@@ -29,10 +29,12 @@ function App(props) {
         index === existingCartItemIndex ? { ...item, quantity: item.quantity + quantity } : item
       );
       setCart(updatedCart);
+      localStorage.setItem("cart",JSON.stringify(updatedCart))
     } else {
       // 장바구니에 새로운 상품 추가
       const cartItem = { ...product, quantity };
       setCart([...cart, cartItem]);
+      localStorage.setItem("cart",JSON.stringify([...cart, cartItem]))
     }
 
     const goToCart = window.confirm('장바구니에 추가되었습니다! 장바구니 페이지로 이동하시겠습니까?');
