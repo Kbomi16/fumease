@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     console.log("init")
     getUserInfo()
-  }, []) // // 빈 의존성 배열이 아니라 userInfo를 의존성 배열에 추가
+  }, []) // 빈 의존성 배열이 아니라 userInfo를 의존성 배열에 추가
 
-  // // 서버에서 사용자 정보를 가져오는 함수
+  // 서버에서 사용자 정보를 가져오는 함수
   async function getUserInfo() {
     const { data } = await axios.get("http://localhost:3001/users/info")
     console.log(data)
