@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
+axios.defaults.withCredentials = true
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,6 +11,18 @@ export const AuthProvider = ({ children }) => {
     setLoggedIn(false);
     setUserInfo(null);
   };
+
+  useEffect(() => {
+    console.log("init")
+    getUserInfo()
+  }, [])
+  // getUserInfo()
+  async function getUserInfo() {
+    const { data } = await axios.get("http://localhost:3001/users/info")
+    console.log(data)
+    setUserInfo(data)
+  }
+
   const handleLogin = async (username, password) => {
     try {
       const response = await axios.post('http://localhost:3001/users/login', {
