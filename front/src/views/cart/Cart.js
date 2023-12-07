@@ -1,16 +1,27 @@
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, Card, Button, Row, Col, Modal, Form } from 'react-bootstrap';
-import { CartContext } from './CartContext';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import styles from './Cart.module.css';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Card,
+  Button,
+  Row,
+  Col,
+  Modal,
+  Form,
+} from "react-bootstrap";
+import { CartContext } from "./CartContext";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import styles from "./Cart.module.css";
 
 function Cart() {
-  const { cart, removeFromCart, updateCartItemQuantity } = useContext(CartContext);
+  const { cart, removeFromCart, updateCartItemQuantity } =
+    useContext(CartContext);
   const [show, setShow] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState(cart.map((product) => product.f_id));
+  const [selectedProducts, setSelectedProducts] = useState(
+    cart.map((product) => product.f_id)
+  );
 
   const navigate = useNavigate();
 
@@ -26,12 +37,41 @@ function Cart() {
     setOrderConfirmed(false);
   };
 
+  const handleOrder = () => {
+    // 주문 내역을 로컬 스토리지에 저장합니다.
+    const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    const selectedProductsInCart = cart.filter((product) =>
+      selectedProducts.includes(product.f_id)
+    );
+
+    // 현재 시간을 timestamp로 저장하여 주문 시간을 유지합니다.
+    const timestamp = Date.now();
+    const newOrder = {
+      timestamp,
+      products: selectedProductsInCart,
+    };
+
+    orderHistory.push(newOrder);
+
+    localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+
+    // 주문이 완료되면 OrderComplete 페이지로 이동
+    navigate("/order-complete");
+
+    // 주문 완료 후 장바구니 비우기
+    const selectedProductIds = selectedProducts;
+    selectedProductIds.forEach((productId) => removeFromCart(productId));
+    setSelectedProducts([]); // 선택된 상품 초기화
+  };
+
   const handleCheckboxChange = (productId) => {
     // 체크박스 변경 시 처리 로직
     setSelectedProducts((prevSelected) => {
-      if (productId === 'all') {
+      if (productId === "all") {
         // 전체 선택 체크박스일 경우
-        return prevSelected.length === cart.length ? [] : cart.map((product) => product.f_id);
+        return prevSelected.length === cart.length
+          ? []
+          : cart.map((product) => product.f_id);
       } else if (prevSelected.includes(productId)) {
         // 이미 선택된 경우 해제
         return prevSelected.filter((id) => id !== productId);
@@ -43,8 +83,8 @@ function Cart() {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('이름을 입력해주세요'),
-    address: Yup.string().required('주소를 입력해주세요'),
+    name: Yup.string().required("이름을 입력해주세요"),
+    address: Yup.string().required("주소를 입력해주세요"),
   });
 
   const formattedCurrency = (value) => {
@@ -58,32 +98,30 @@ function Cart() {
   const formattedTotalAmount = formattedCurrency(selectedTotalAmount);
 
   return (
-    <Container className={styles['container']}>
+    <Container className={styles["container"]}>
       <h1 className={styles.shop}>장바구니</h1>
       {cart.length === 0 ? (
         <p className={styles.p2}>장바구니가 비어있습니다.</p>
       ) : (
         <>
           <div className={styles.selectAllRow}>
-            <div className={styles['selectButton']}>
+            <div className={styles["selectButton"]}>
               <Form.Check
                 custom
                 type="checkbox"
                 id="checkbox-all"
-                onChange={() => handleCheckboxChange('all')}
+                onChange={() => handleCheckboxChange("all")}
                 checked={selectedProducts.length === cart.length}
-
               />
               <span>전체 선택</span>
-
             </div>
           </div>
 
           {cart.map((product) => (
-            <Card key={product.f_id} className={styles['card']}>
+            <Card key={product.f_id} className={styles["card"]}>
               <Card.Body>
                 <Row className="align-items-center">
-                  <Col md={1} className={styles['selectButton']}>
+                  <Col md={1} className={styles["selectButton"]}>
                     <Form.Check
                       custom
                       type="checkbox"
@@ -92,26 +130,36 @@ function Cart() {
                       checked={selectedProducts.includes(product.f_id)}
                     />
                   </Col>
-                  <Col md={2} className={styles['img']}>
+                  <Col md={2} className={styles["img"]}>
                     <Card.Img variant="top" src={product.f_img} />
                   </Col>
-                  <Col md={3} className={styles['title']}>
+                  <Col md={3} className={styles["title"]}>
                     {product.f_name}
                   </Col>
-                  <Col md={2} className={styles['text']}>
+                  <Col md={2} className={styles["text"]}>
                     {formattedCurrency(product.f_price * product.quantity)}원
                   </Col>
                   <Col md={2} className={styles.quantityControl}>
                     <Button
                       variant="outline-dark"
-                      onClick={() => updateCartItemQuantity(product.f_id, product.quantity - 1)}
+                      onClick={() =>
+                        updateCartItemQuantity(
+                          product.f_id,
+                          product.quantity - 1
+                        )
+                      }
                     >
                       -
                     </Button>
                     <span className={styles.quantity}>{product.quantity}</span>
                     <Button
                       variant="outline-dark"
-                      onClick={() => updateCartItemQuantity(product.f_id, product.quantity + 1)}
+                      onClick={() =>
+                        updateCartItemQuantity(
+                          product.f_id,
+                          product.quantity + 1
+                        )
+                      }
                     >
                       +
                     </Button>
@@ -132,15 +180,15 @@ function Cart() {
           ))}
           <Row className={styles.totalAmountRow}>
             <div className={styles.totalAmountLabel}>
-              총 결제금액 :
-              {formattedTotalAmount}원
-
+              총 결제금액 :{formattedTotalAmount}원
             </div>
-
           </Row>
 
-
-          <Button variant="primary" onClick={handleShow} className={styles.btn1}>
+          <Button
+            variant="primary"
+            onClick={handleShow}
+            className={styles.btn1}
+          >
             주문하기
           </Button>
           {!orderConfirmed && (
@@ -150,7 +198,7 @@ function Cart() {
               </Modal.Header>
               <Modal.Body>
                 <Formik
-                  initialValues={{ name: '', address: '', request: '' }}
+                  initialValues={{ name: "", address: "", request: "" }}
                   validationSchema={validationSchema}
                   onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
@@ -160,11 +208,13 @@ function Cart() {
                     const productsToRemove = cart.filter((product) =>
                       selectedProducts.includes(product.f_id)
                     );
-                    productsToRemove.forEach((product) => removeFromCart(product.f_id));
+                    productsToRemove.forEach((product) =>
+                      removeFromCart(product.f_id)
+                    );
 
                     setOrderConfirmed(true);
                     // 주문이 완료되면 OrderComplete 페이지로 이동
-                    navigate('/order-complete');
+                    navigate("/order-complete");
                   }}
                 >
                   {({
@@ -187,7 +237,9 @@ function Cart() {
                           value={values.name}
                           isInvalid={touched.name && errors.name}
                         />
-                        <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">
+                          {errors.name}
+                        </Form.Control.Feedback>
                       </Form.Group>
 
                       <Form.Group controlId="formAddress">
@@ -200,7 +252,9 @@ function Cart() {
                           value={values.address}
                           isInvalid={touched.address && errors.address}
                         />
-                        <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">
+                          {errors.address}
+                        </Form.Control.Feedback>
                       </Form.Group>
 
                       <Form.Group controlId="formRequest">
@@ -222,8 +276,11 @@ function Cart() {
                         <Button
                           variant="primary"
                           type="submit"
-                          disabled={isSubmitting || selectedProducts.length === 0}
+                          disabled={
+                            isSubmitting || selectedProducts.length === 0
+                          }
                           className={styles.btn2}
+                          onClick={handleOrder}
                         >
                           주문
                         </Button>
