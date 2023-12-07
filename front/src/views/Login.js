@@ -4,7 +4,9 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
-
+// withCredentials: 서로 다른 도메인에 요청을 보낼 때 요청에 credential 정보를 담아서 보낼 지를 결정하는 항목 
+// CORS 요청을 허용하여 쿠키값 전달 가능하게 함
+axios.defaults.withCredentials = true
 
 const Login = () => {
   const navigate = useNavigate();
