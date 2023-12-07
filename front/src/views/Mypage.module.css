@@ -1,13 +1,16 @@
+/* Mypage.module.css */
+
 .container {
   padding: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 100%; 
-  width: 100vw; 
-  margin: 0 auto; 
+  max-width: 100%;
+  width: 100vw;
+  margin: 0 auto;
 }
+
 h2 {
   font-family: 'AppleSDGothicNeoB';
   text-align: center;
@@ -22,7 +25,8 @@ h2 {
   border: none !important;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   cursor: pointer;
   background-color: #000 !important;
   color: #fff;
@@ -31,6 +35,7 @@ h2 {
 
 .title {
   font-family: 'AppleSDGothicNeoB';
+
 }
 
 .text {
@@ -42,30 +47,36 @@ h2 {
   width: 50rem;
   margin-bottom: 1rem;
 }
+
 .justify-content-md-center {
   display: flex;
   flex-direction: column;
 }
+
 .col {
   margin-bottom: 3rem;
 }
+
 .img1 {
   width: 8rem;
   border: 1px #e0e0e0 solid;
   border-radius: 5px;
 }
+
 .order {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
 .card-text {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
 .navigation {
   width: 10rem;
   border: 1px #e0e0e0 solid;
@@ -73,13 +84,21 @@ h2 {
   padding: 1rem;
   height: fit-content;
 }
+
 .nav {
   color: #636363;
   font-family: 'AppleSDGothicNeoL';
 }
+
 .nav:hover {
   color: #000;
 }
+
 .hr {
   margin-top: 3rem;
+}
+
+/* 추가한 스타일 */
+.order-block {
+  margin-bottom: 20px;
 }

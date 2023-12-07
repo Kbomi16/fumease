@@ -1,3 +1,5 @@
+// Mypage.js
+
 import React, { useContext } from "react";
 import { Container, Row, Col, Card, Button, Nav } from "react-bootstrap";
 import styles from "./Mypage.module.css";
@@ -27,7 +29,7 @@ const MyPage = () => {
         <Row>
           <Col md={2} className={styles.navigation}>
             <Nav className="flex-column">
-              고객센터 <hr/>
+              고객센터 <hr />
               <Nav.Link className={styles.nav}>
                 공지사항
               </Nav.Link>
@@ -41,7 +43,7 @@ const MyPage = () => {
                 1:1 문의하기
               </Nav.Link>
               <div className={styles.hr}></div>
-              계정정보 <hr/>
+              계정정보 <hr />
               <Nav.Link className={styles.nav}>
                 회원정보 수정
               </Nav.Link>
@@ -78,12 +80,12 @@ const MyPage = () => {
                   <Card.Body>
                     <Card.Title className={styles["title"]}>
                       주문 내역
-                    </Card.Title>
+                    </Card.Title><hr></hr>
 
                     {orderHistory.map((order, index) => (
-                      <><Card.Text key={index} className={styles["card-text"]}>
+                      <div key={index} className={styles["order-block"]}>
                         {order.products.map((product, idx) => (
-                          <>
+                          <Card.Text key={idx} className={styles["card-text"]}>
                             <Col md={2} className={styles["img1"]}>
                               <Card.Img variant="top" src={product.f_img} />
                             </Col>
@@ -94,9 +96,10 @@ const MyPage = () => {
                                 {new Date(order.timestamp).toLocaleString()}
                               </p>
                             </Col>
-                          </>
+                          </Card.Text>
                         ))}
-                      </Card.Text><hr /></>
+                        <hr />
+                      </div>
                     ))}
                   </Card.Body>
                 </Card>
