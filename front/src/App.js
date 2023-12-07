@@ -1,31 +1,29 @@
 // App.js
-import React from 'react';
+import React from "react";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import "../src/fonts/Fonts.css"
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../src/fonts/Fonts.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import 'normalize.css';
 import { CartProvider } from './views/cart/CartContext';
 import ScrollToTop from './ScrollToTop';
 
+import Home from "./views/Home";
+import Header from "./components/Layout/Header";
+import Footer from "./components/Layout/Footer";
+import Login from "./views/Login";
+import Signup from "./views/Signup";
+import MyPage from "./views/Mypage";
+import Scent from "./views/scent/Scent";
+import About from "./views/About";
+import Detail from "./views/Detail";
 
-import Home from './views/Home'
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
-import Login from './views/Login';
-import Signup from './views/Signup';
-import MyPage from './views/Mypage';
-import Scent from './views/scent/Scent';
-import About from './views/About';
-import Detail from './views/Detail';
-
-import Cart from './views/cart/Cart';
-import { AuthProvider } from './views/AuthContext';
-import OrderComplete from './views/OrderComplete';
+import Cart from "./views/cart/Cart";
+import { AuthProvider } from "./views/AuthContext";
+import OrderComplete from "./views/OrderComplete";
 
 function App() {
-
   return (
     <div className="App">
       <AuthProvider>

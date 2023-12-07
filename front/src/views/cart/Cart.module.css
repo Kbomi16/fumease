@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.p2 {
+  font-size: 20px;
+}
 
 h1 {
   font-family: 'AppleSDGothicNeoB';

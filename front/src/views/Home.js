@@ -244,10 +244,10 @@ const Home = () => {
           <span className={styles.loader}></span>
           </div>
           
-          <p>{loadingMessage}</p></>
+          <p className={styles.p2}>{loadingMessage}</p></>
         ) : (
           <div>
-            <p>오늘의 날씨와 기분에 따라 원하는 키워드 3가지를 선택해보세요.</p>
+            <p className={styles.p2}>오늘의 날씨와 기분에 따라 원하는 키워드 3가지를 선택해보세요.</p>
             <div className={styles["keyword-buttons"]}>
               {keywords.map((keyword, index) => {
                 // 이전에 keyword가 #으로 시작하는지 확인

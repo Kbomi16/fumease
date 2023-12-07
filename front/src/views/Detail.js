@@ -5,8 +5,10 @@ import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import { CartContext } from '../views/cart/CartContext';
 import styles from './Detail.module.css';
+import { AuthContext } from './AuthContext';
 
 function App(props) {
+  const { loggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { f_id } = useParams();
@@ -17,7 +19,10 @@ function App(props) {
 
   const handleAddToCart = () => {
     const existingCartItemIndex = cart.findIndex(item => item.f_id === product.f_id);
-
+    if(!loggedIn) {
+      alert('로그인이 필요합니다.');
+      navigate('/login')
+    } else {
     if (existingCartItemIndex !== -1) {
       // 상품이 이미 장바구니에 있는 경우 수량만 업데이트
       const updatedCart = cart.map((item, index) =>
@@ -34,7 +39,8 @@ function App(props) {
     if (goToCart) {
       navigate('/cart')
     }
-  };
+  }
+};
 
   const handleQuantityChange = (newQuantity) => {
     // 수량이 0보다 작아지지 않도록
@@ -92,7 +98,7 @@ function App(props) {
               </div>
 
               <div className="d-flex justify-content-center">
-                <Button variant="outline-dark" className={styles.add} onClick={handleAddToCart}>장바구니 추가</Button>
+              <Button variant="outline-dark" className={styles.add} onClick={handleAddToCart}>장바구니 추가</Button>
               </div>
               <hr className={styles.jb} />
               <p className={styles.c}>향</p>
