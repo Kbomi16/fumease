@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button, Nav } from "react-bootstrap";
 import styles from "./Mypage.module.css";
 import { useNavigate } from "react-router-dom";
@@ -6,19 +6,39 @@ import { AuthContext } from "./AuthContext";
 
 const MyPage = () => {
   const { userInfo, logout } = useContext(AuthContext);
-  console.log(userInfo);
   const navigate = useNavigate();
-
-  const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
 
   const handleLogout = () => {
     logout(); // 로그아웃 처리
     navigate("/"); // 메인 페이지로 이동
   };
 
-  const handleNavigation = (route) => {
-    navigate(`/${route}`);
+  const [orderHistory, setOrderHistory] = useState([]);
+
+  const saveOrderHistory = (userId, orderHistory) => {
+    localStorage.setItem(
+      `orderHistory_${userId}`,
+      JSON.stringify(orderHistory)
+    );
   };
+
+  const getOrderHistory = (userId) => {
+    return JSON.parse(localStorage.getItem(`orderHistory_${userId}`)) || [];
+  };
+
+  const userId = userInfo ? userInfo.id : null;
+
+  useEffect(() => {
+    const userId = userInfo ? userInfo.id : null;
+    const orderHistoryKey = `orderHistory_${userId}`;
+
+    if (userId) {
+      // 해당 사용자의 주문 내역을 가져옵니다.
+      const userOrderHistory =
+        JSON.parse(localStorage.getItem(orderHistoryKey)) || [];
+      setOrderHistory(userOrderHistory);
+    }
+  }, [userInfo]);
 
   return (
     <>
@@ -27,24 +47,14 @@ const MyPage = () => {
         <Row>
           <Col md={2} className={styles.navigation}>
             <Nav className="flex-column">
-              고객센터 <hr/>
-              <Nav.Link className={styles.nav}>
-                공지사항
-              </Nav.Link>
-              <Nav.Link className={styles.nav}>
-                고객서비스
-              </Nav.Link>
-              <Nav.Link className={styles.nav}>
-                자주 묻는 질문
-              </Nav.Link>
-              <Nav.Link className={styles.nav}>
-                1:1 문의하기
-              </Nav.Link>
+              고객센터 <hr />
+              <Nav.Link className={styles.nav}>공지사항</Nav.Link>
+              <Nav.Link className={styles.nav}>고객서비스</Nav.Link>
+              <Nav.Link className={styles.nav}>자주 묻는 질문</Nav.Link>
+              <Nav.Link className={styles.nav}>1:1 문의하기</Nav.Link>
               <div className={styles.hr}></div>
-              계정정보 <hr/>
-              <Nav.Link className={styles.nav}>
-                회원정보 수정
-              </Nav.Link>
+              계정정보 <hr />
+              <Nav.Link className={styles.nav}>회원정보 수정</Nav.Link>
             </Nav>
           </Col>
           <Col md={10}>
@@ -81,22 +91,23 @@ const MyPage = () => {
                     </Card.Title>
 
                     {orderHistory.map((order, index) => (
-                      <><Card.Text key={index} className={styles["card-text"]}>
+                      <div key={index} className={styles["order-block"]}>
                         {order.products.map((product, idx) => (
-                          <>
+                          <Row key={idx} className={styles.productRow}>
                             <Col md={2} className={styles["img1"]}>
                               <Card.Img variant="top" src={product.f_img} />
                             </Col>
-                            <Col>
+                            <Col className={styles.info}>
                               {product.f_name} - {product.f_price}
-                              <p>
+                              <p className={styles.p1}>
                                 주문 시간:{" "}
                                 {new Date(order.timestamp).toLocaleString()}
                               </p>
                             </Col>
-                          </>
+                          </Row>
                         ))}
-                      </Card.Text><hr /></>
+                        <hr />
+                      </div>
                     ))}
                   </Card.Body>
                 </Card>

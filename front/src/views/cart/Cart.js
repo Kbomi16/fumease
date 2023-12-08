@@ -13,10 +13,13 @@ import { CartContext } from "./CartContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import styles from "./Cart.module.css";
+import { AuthContext } from "../AuthContext";
 
 function Cart() {
-  const { cart, removeFromCart, updateCartItemQuantity } =
-    useContext(CartContext);
+  const { cart, removeFromCart, updateCartItemQuantity } = useContext(
+    CartContext
+  );
+  const { userInfo } = useContext(AuthContext); // AuthContext에서 userInfo 가져오기
   const [show, setShow] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState(
@@ -28,8 +31,6 @@ function Cart() {
   const handleClose = () => {
     setShow(false);
     setOrderConfirmed(false);
-    // 주문 확인 모달이 닫힐 때 선택한 상품 초기화
-
     setSelectedProducts(cart.map((product) => product.f_id));
   };
 
@@ -39,13 +40,14 @@ function Cart() {
   };
 
   const handleOrder = () => {
-    // 주문 내역을 로컬 스토리지에 저장합니다.
-    const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    const userId = userInfo ? userInfo.id : null;
+    const orderHistoryKey = `orderHistory_${userId}`;
+    const orderHistory = JSON.parse(localStorage.getItem(orderHistoryKey)) || [];
+
     const selectedProductsInCart = cart.filter((product) =>
       selectedProducts.includes(product.f_id)
     );
 
-    // 현재 시간을 timestamp로 저장하여 주문 시간을 유지합니다.
     const timestamp = Date.now();
     const newOrder = {
       timestamp,
@@ -54,15 +56,13 @@ function Cart() {
 
     orderHistory.push(newOrder);
 
-    localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+    localStorage.setItem(orderHistoryKey, JSON.stringify(orderHistory));
 
-    // 주문이 완료되면 OrderComplete 페이지로 이동
     navigate("/order-complete");
 
-    // 주문 완료 후 장바구니 비우기
     const selectedProductIds = selectedProducts;
     selectedProductIds.forEach((productId) => removeFromCart(productId));
-    setSelectedProducts([]); // 선택된 상품 초기화
+    setSelectedProducts([]);
   };
 
   const handleCheckboxChange = (productId) => {
