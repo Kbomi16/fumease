@@ -8,25 +8,15 @@ router.get("/", function (req, res, next) {
 
 router.get("/list", async function (req, res) {
   try {
-    const { page, limit } = req.query;
-    const pageNumber = parseInt(page) || 1;
-    const itemsPerPage = parseInt(limit) || 12;
-
-    const offset = (pageNumber - 1) * itemsPerPage;
-
     const products = await Perfume.findAll({
       attributes: ["f_id", "f_name", "f_price", "f_img", "f_brand"],
-      offset: offset,
-      limit: itemsPerPage,
     });
-
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).send("Error fetching products");
   }
 });
-
 
 router.get("/scent", async function (req, res) {
   res.json([]);
@@ -108,12 +98,12 @@ router.get("/chatgpt", async function (req, res) {
 
     let check;
 
-    async function requestGPT(){
+    async function requestGPT() {
       do {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         check = await openai.beta.threads.runs.retrieve(thread.id, run.id);
       } while (check.status !== "completed");
-  
+
       const messages = await openai.beta.threads.messages.list(thread.id);
       console.log("Messages:", messages);
       console.log("First message content:", messages.data[0].content[0]);
@@ -124,16 +114,15 @@ router.get("/chatgpt", async function (req, res) {
       const content = messages.data[0].content[0].text.value;
 
       const list = textToArray(content);
-      return list
+      return list;
     }
-   
 
     // GPT답변 텍스트를 줄 단위로 분리하고, 각 행을 배열로 반환함.
     function textToArray(text) {
       const lines = text.split("\n");
       const perfumes = [];
       let currentPerfume = {};
-    
+
       lines.forEach((line, index) => {
         if (line.includes("향수 이름")) {
           if (Object.keys(currentPerfume).length !== 0) {
@@ -147,21 +136,20 @@ router.get("/chatgpt", async function (req, res) {
           currentPerfume["brand"] = line.split(": ")[1].trim();
         }
       });
-    
+
       // 마지막 향수 정보를 배열에 추가
       if (Object.keys(currentPerfume).length !== 0) {
         perfumes.push(currentPerfume);
       }
 
-    
       return perfumes;
     }
-    var list=[];
-    var perfumes=[]
-    do{
-      list=await requestGPT()
+    var list = [];
+    var perfumes = [];
+    do {
+      list = await requestGPT();
       const perfumeNames = list.map((perfume) => perfume.name);
-      console.log("GPT 가 추천한 향수 개수"+list.length)
+      console.log("GPT 가 추천한 향수 개수" + list.length);
       perfumes = await Promise.all(
         perfumeNames.map((perfumeName) => {
           if (perfumeName) {
@@ -181,13 +169,10 @@ router.get("/chatgpt", async function (req, res) {
           }
         })
       );
-       
-    console.log("추출한 답변(향수 리스트): ", perfumes.length);
 
-    }while(!(perfumes.length>0)) 
+      console.log("추출한 답변(향수 리스트): ", perfumes.length);
+    } while (!(perfumes.length > 0));
     //향수 한 개라도 나올때까지 계속 반복..
-  
-
 
     res.json(perfumes.filter((perfume) => perfume != null));
   } catch (error) {
