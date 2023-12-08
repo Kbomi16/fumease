@@ -5,8 +5,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/fonts/Fonts.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import "normalize.css";
-import { CartProvider } from "./views/cart/CartContext";
+import 'normalize.css';
+import { CartProvider } from './views/cart/CartContext';
+import ScrollToTop from './ScrollToTop';
 
 import Home from "./views/Home";
 import Header from "./components/Layout/Header";
@@ -29,6 +30,8 @@ function App() {
         <CartProvider>
           <BrowserRouter>
             <Header />
+            <ScrollToTop />
+
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -42,6 +45,9 @@ function App() {
             </Routes>
             <Footer />
           </BrowserRouter>
+
+
+
         </CartProvider>
       </AuthProvider>
     </div>
