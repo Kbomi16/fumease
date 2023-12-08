@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Card, Col, Row, Modal } from "react-bootstrap";
 
+function formatPrice(price) {
+  return price.toLocaleString(); // 숫자를 천단위로 쉼표가 포함된 문자열로 변환
+}
+
 const Home = () => {
   // 모달 열기/닫기를 위한 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -181,7 +185,7 @@ const Home = () => {
                     {perfume.f_name}
                   </Card.Title>
                   <Card.Text className={styles["text"]}>
-                    {perfume.f_price}원
+                    {formatPrice(perfume.f_price)}원
                   </Card.Text>
                   <Card.Text className={styles["text"]}>
                     {perfume.f_brand}
@@ -240,11 +244,11 @@ const Home = () => {
 
         {isLoading ? (
           <>
-          <div className={styles["circle-spinner"]}>
-          <span className={styles.loader}></span>
-          </div>
-          
-          <p className={styles.p2}>{loadingMessage}</p></>
+            <div className={styles["circle-spinner"]}>
+              <span className={styles.loader}></span>
+            </div>
+
+            <p className={styles.p2}>{loadingMessage}</p></>
         ) : (
           <div>
             <p className={styles.p2}>오늘의 날씨와 기분에 따라 원하는 키워드 3가지를 선택해보세요.</p>

@@ -16,9 +16,9 @@ function Footer() {
                     ))}
                 </div>
                 <div className={styles['ftext']}>
-                    <p> 상호명: (주)퓨미즈 | 대표명: 김보미 | 사업자등록번호 : 2023541005 | 문의 : pumease@pumease.kr<br/>
-                    통신판매업신고번호: 제 2023-서울 | 주소 : 서울특별시 서대문구 가좌로 134 정보통신공학과<br/>
-                    2023 (주)퓨미즈, Inc. All rights reserved.</p>
+                    <p> 상호명: (주)퓨미즈 | 대표명: 김보미 | 사업자등록번호 : 2023541005 | 문의 : fumease@fumease.kr<br />
+                        통신판매업신고번호: 제 2023-서울 | 주소 : 서울특별시 서대문구 가좌로 134 정보통신공학과<br />
+                        2023 (주)퓨미즈, Inc. All rights reserved.</p>
                 </div>
             </div>
         </footer>
