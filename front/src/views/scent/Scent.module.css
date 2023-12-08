@@ -82,7 +82,7 @@ p {
   color: #fff;
 }
 .scents {
-  padding: 5rem 10rem;
+  padding: 5rem 20rem;
 }
 
 .mb4 {
@@ -107,4 +107,9 @@ p {
   cursor: pointer;
   background-color: #000 !important;
   color: #fff;
+}
+@media (max-width: 100rem) {
+  .scents {
+    padding: 5rem 1rem;
+  }
 }
