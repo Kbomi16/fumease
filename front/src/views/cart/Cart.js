@@ -63,6 +63,17 @@ function Cart() {
     const selectedProductIds = selectedProducts;
     selectedProductIds.forEach((productId) => removeFromCart(productId));
     setSelectedProducts([]);
+
+    setOrderConfirmed(true);
+
+  // 선택된 상품만 장바구니에서 제거
+  const productsToRemove = cart.filter((product) =>
+    selectedProducts.includes(product.f_id)
+  );
+  productsToRemove.forEach((product) => removeFromCart(product.f_id));
+
+  // 선택된 상품들을 장바구니에서 제거한 후, selectedProducts 초기화
+  setSelectedProducts([]);
   };
 
   const handleCheckboxChange = (productId) => {

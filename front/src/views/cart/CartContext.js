@@ -36,8 +36,12 @@ export const CartProvider = ({ children }) => {
         : product
     ));
   };
+  const clearCart = () => {
+    setCart([]); // 장바구니 비우기
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart, removeFromCart, updateCartItemQuantity }}>
+    <CartContext.Provider value={{ cart, setCart, removeFromCart, updateCartItemQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );
