@@ -94,8 +94,8 @@ const MyPage = () => {
                       <div key={index} className={styles["order-block"]}>
                         {order.products.map((product, idx) => (
                           <Row key={idx} className={styles.productRow}>
-                            <Col md={2} className={styles["img1"]}>
-                              <Card.Img variant="top" src={product.f_img} />
+                            <Col md={2} className={styles.img}>
+                              <Card.Img variant="top" src={product.f_img} className={styles["img1"]}/>
                             </Col>
                             <Col className={styles.info}>
                               {product.f_name} - {product.f_price}

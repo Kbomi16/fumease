@@ -50,11 +50,13 @@ h2 {
 .col {
   margin-bottom: 3rem;
 }
-.img1 {
+.img {
   width: 10rem;
+  margin-right: 1rem;
+}
+.img1 {
   border: 1px #e0e0e0 solid;
   border-radius: 5px;
-  margin-right: 1rem;
 }
 .order {
   display: flex;

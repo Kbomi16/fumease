@@ -131,8 +131,8 @@ function Cart() {
                       checked={selectedProducts.includes(product.f_id)}
                     />
                   </Col>
-                  <Col md={2} className={styles["img"]}>
-                    <Card.Img variant="top" src={product.f_img} />
+                  <Col md={2}>
+                    <Card.Img variant="top" src={product.f_img} className={styles["img"]}/>
                   </Col>
                   <Col md={3} className={styles["title"]}>
                     {product.f_name}

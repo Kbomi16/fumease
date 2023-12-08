@@ -46,7 +46,9 @@ h1 {
 }  
 .img {
   width: 10rem;
-} 
+  border: 1px #e0e0e0 solid;
+  border-radius: 5px;
+}
 .card {
   width: 80rem;
 } 
