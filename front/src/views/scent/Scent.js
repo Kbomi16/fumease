@@ -5,17 +5,13 @@ import YouTube from 'react-youtube';
 import styles from './Scent.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 function formatPrice(price) {
   return price.toLocaleString(); // 숫자를 천단위로 쉼표가 포함된 문자열로 변환
 }
-
 function App() {
   const navigate = useNavigate();
-
   // YouTube 동영상의 ID
   const videoId = 'kDIlGu26XVI';
-
   const opts = {
     height: '800',
     width: '100%',
@@ -25,8 +21,6 @@ function App() {
       modestbranding: 1,
     },
   };
-
-
   // 백엔드에서 가져온 제품 데이터를 저장할 상태
   const [products, setProducts] = useState([]);
 
@@ -48,31 +42,29 @@ function App() {
         console.error('Error fetching products:', error);
       });
   }, []);
-
   // 페이지네이션을 위한 변수들
   const [page, setPage] = useState(1); // 현재 페이지
   const [loading, setLoading] = useState(false); // 추가 데이터 로딩 여부
 
-  // 스크롤 이벤트 핸들러
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100 && !loading && selectedBrand === null) {
-      // "전체보기"일 때 스크롤이 페이지 하단에 도달하면 추가 데이터 로드
+    if (scrollTop + clientHeight >= scrollHeight - 10000 && !loading && selectedBrand === null) {
       setLoading(true);
-      axios.get(`http://localhost:3001/list?page=${page + 1}`)
+      // 다음 페이지의 데이터를 가져옵니다
+      axios
+        .get(`http://localhost:3001/list?page=${page + 1}`)
         .then((response) => {
           const newProducts = response.data;
-          setProducts([...products, ...newProducts]);
-          setPage(page + 1);
+          setProducts((prevProducts) => [...prevProducts, ...newProducts]); // 새로운 데이터를 기존 제품 목록에 추가합니다
+          setPage((prevPage) => prevPage + 1);
           setLoading(false);
         })
         .catch((error) => {
-          console.error('Error fetching more products:', error);
+          console.error('추가 제품을 가져오는 중 오류 발생:', error);
           setLoading(false);
         });
     }
   };
-
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -145,5 +137,4 @@ function App() {
     </Container>
   );
 }
-
 export default App;
