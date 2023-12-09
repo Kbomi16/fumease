@@ -51,17 +51,18 @@ function App() {
   // 페이지네이션
   const [page, setPage] = useState(1); // 현재 페이지
   const [loading, setLoading] = useState(false); // 추가 데이터 로딩 여부
+  const [initialLoad, setInitialLoad] = useState(true); // 초기 로딩 여부
 
 
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
-    // 스크롤이 하단까지 내려왔을 때만 데이터 로딩
-    if (scrollTop + clientHeight >= scrollHeight - 10000 && !loading && selectedBrand === null && page === 1) {
+    // 초기 로딩이 완료되었고, 스크롤이 하단까지 내려왔을 때만 데이터 로딩
+    if (!initialLoad && scrollTop + clientHeight >= scrollHeight - 5000 && !loading && page > 2) {
       setLoading(true);
       // 다음 페이지의 데이터를 가져옵니다
       axios
-        .get(`http://localhost:3001/list?page=${page + 1}`)
+        .get(`http://localhost:3001/list?page=${page}`)
         .then((response) => {
           const newProducts = response.data;
           setProducts((prevProducts) => [...prevProducts, ...newProducts]); // 새로운 데이터를 기존 제품 목록에 추가합니다
@@ -75,13 +76,29 @@ function App() {
     }
   };
 
+
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [page, loading, selectedBrand]);
+  }, [page, loading, selectedBrand, initialLoad]);
+
+  useEffect(() => {
+    // 초기 로딩 시에만 데이터를 가져오도록 설정
+    if (initialLoad) {
+      axios.get('http://localhost:3001/list?page=1').then((response) => {
+        const products = response.data;
+        setProducts(products);
+        setInitialLoad(false); // 초기 로딩 후에는 false로 설정하여 다시 로딩하지 않도록 함
+      })
+        .catch((error) => {
+          console.error('Error fetching products:', error);
+        });
+    }
+  }, [initialLoad]);
+
 
 
   return (
