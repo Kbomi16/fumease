@@ -85,16 +85,16 @@
   color: #000;
   width: 10rem;
   font-size: 20px;
-  border: 2px solid #000;
+  border: 2px solid #000 !important;
   background-color: #fff;
   padding: 0.8rem;
   cursor: pointer;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
-.aiBtn:hover, .aiBtn:focus {
-  color: #000;
-  background-color: #fff;
-  border: 2px solid #000;
+.aiBtn:hover {
+  color: #fff;
+  background-color: #000;
+  transition: .2s linear;
 }
 
 
