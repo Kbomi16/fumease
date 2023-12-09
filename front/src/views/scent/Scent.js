@@ -9,6 +9,7 @@ import axios from 'axios';
 function formatPrice(price) {
   return price.toLocaleString(); // 숫자를 천단위로 쉼표가 포함된 문자열로 변환
 }
+
 function App() {
   const navigate = useNavigate();
   // YouTube 동영상의 ID
@@ -38,18 +39,16 @@ function App() {
 
   useEffect(() => {
     // 백엔드 서버에서 제품 데이터를 가져오는 요청
-    axios
-      .get("http://localhost:3001/list")
-      .then((response) => {
-        const products = response.data;
-        setProducts(products);
-      })
+    axios.get('http://localhost:3001/list').then((response) => {
+      const products = response.data
+      setProducts(products);
+    })
       .catch((error) => {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       });
   }, []);
 
-  // 페이지네이션을 위한 변수들
+  // 페이지네이션
   const [page, setPage] = useState(1); // 현재 페이지
   const [loading, setLoading] = useState(false); // 추가 데이터 로딩 여부
 
@@ -68,7 +67,7 @@ function App() {
           setLoading(false);
         })
         .catch((error) => {
-          console.error('추가 제품을 가져오는 중 오류 발생:', error);
+          console.error('Error fetching products:', error);
           setLoading(false);
         });
     }
@@ -82,6 +81,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [page, loading, selectedBrand]);
+
 
   return (
     <Container className={styles["container"]}>
@@ -155,37 +155,18 @@ function App() {
         <p>원하는 브랜드를 선택하여 해당 브랜드의 제품들을 보실 수 있어요.</p>
       </div>
 
-      <Row className={styles["scents"]}>
+      <Row className={styles['scents']}>
         {products
           .filter((product) => selectedBrand === null || product.f_brand === selectedBrand)
           .map((product) => (
-            <Col
-              key={product.id}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              className={styles.mb4}
-            >
+            <Col key={product.id} xs={12} sm={6} md={4} lg={3} className={styles.mb4}>
               <Card>
                 <Card.Img variant="top" src={product.f_img} />
                 <Card.Body>
-                  <Card.Title className={styles["title"]}>
-                    {product.f_name}
-                  </Card.Title>
-                  <Card.Text className={styles["text"]}>
-                    {formatPrice(product.f_price)}원
-                  </Card.Text>
-                  <Card.Text className={styles["text"]}>
-                    {product.f_brand}
-                  </Card.Text>
-                  <Button
-                    variant="primary"
-                    className={styles.btn}
-                    onClick={() => navigate(`/${product.f_id}`)}
-                  >
-                    MORE
-                  </Button>
+                  <Card.Title className={styles['title']}>{product.f_name}</Card.Title>
+                  <Card.Text className={styles['text']}>{formatPrice(product.f_price)}원</Card.Text>
+                  <Card.Text className={styles['text']}>{product.f_brand}</Card.Text>
+                  <Button variant="primary" className={styles.btn} onClick={() => navigate(`/${product.f_id}`)}>MORE</Button>
                 </Card.Body>
               </Card>
             </Col>
