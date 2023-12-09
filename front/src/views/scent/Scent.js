@@ -55,7 +55,9 @@ function App() {
 
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 10000 && !loading && selectedBrand === null) {
+
+    // 스크롤이 하단까지 내려왔을 때만 데이터 로딩
+    if (scrollTop + clientHeight >= scrollHeight - 10000 && !loading && selectedBrand === null && page === 1) {
       setLoading(true);
       // 다음 페이지의 데이터를 가져옵니다
       axios
@@ -72,7 +74,6 @@ function App() {
         });
     }
   };
-
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
