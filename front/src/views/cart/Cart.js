@@ -16,7 +16,7 @@ import styles from "./Cart.module.css";
 import { AuthContext } from "../AuthContext";
 
 function Cart() {
-  const { cart, removeFromCart, updateCartItemQuantity } = useContext(
+  const { cart, removeFromCart, updateCartItemQuantity, clearCart } = useContext(
     CartContext
   );
   const { userInfo } = useContext(AuthContext); // AuthContext에서 userInfo 가져오기
@@ -58,14 +58,6 @@ function Cart() {
 
     localStorage.setItem(orderHistoryKey, JSON.stringify(orderHistory));
 
-    navigate("/order-complete");
-
-    const selectedProductIds = selectedProducts;
-    selectedProductIds.forEach((productId) => removeFromCart(productId));
-    setSelectedProducts([]);
-
-    setOrderConfirmed(true);
-
   // 선택된 상품만 장바구니에서 제거
   const productsToRemove = cart.filter((product) =>
     selectedProducts.includes(product.f_id)
@@ -74,6 +66,15 @@ function Cart() {
 
   // 선택된 상품들을 장바구니에서 제거한 후, selectedProducts 초기화
   setSelectedProducts([]);
+
+  // 주문이 완료되면 OrderComplete 페이지로 이동
+  navigate("/order-complete");
+
+  // 장바구니 비우기
+  clearCart();
+
+  // 주문 확인 상태를 true로 설정
+  setOrderConfirmed(true);
   };
 
   const handleCheckboxChange = (productId) => {
